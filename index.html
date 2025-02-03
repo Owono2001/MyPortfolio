@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Portfolio - Pedro Fabian Owono</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome Icons -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Oxanium Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&display=swap" rel="stylesheet">
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/CSSRulePlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/CSSPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/EaselPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/PixiPlugin.min.js"></script>
+</head>
+<body>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">PFO</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="name-container">
+                <h1>Pedro Fabian Owono</h1>
+            </div>
+            
+            <p class="hero-description">
+                Bridging software solutions through innovative engineering and computational thinking.<br> 
+            </p>
+    
+            <div class="hero-links">
+                <a href="#projects" class="cyber-button">
+                    <i class="fas fa-code"></i>
+                    View Projects
+                </a>
+                <a href="#contact" class="cyber-button">
+                    <i class="fas fa-envelope"></i>
+                    Contact Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    
+    <script>
+    class Particle {
+        constructor(canvas, ctx) {
+            this.canvas = canvas;
+            this.ctx = ctx;
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.velocity = { x: (Math.random() - 0.5) * 0.5, y: (Math.random() - 0.5) * 0.5 };
+            this.radius = Math.random() * 2;
+            this.color = Math.random() > 0.5 ? 'rgba(0,243,255,0.8)' : 'rgba(255,0,255,0.8)';
+            this.rotation = Math.random() * Math.PI * 2;
+            this.symbols = ['<>', '{}', '[]', '01', '#/', '%%', '&&', '++', '==', '||'];
+        }
+
+        draw() {
+            this.ctx.save();
+            this.ctx.translate(this.x, this.y);
+            this.ctx.rotate(this.rotation);
+            this.ctx.fillStyle = this.color;
+            this.ctx.font = `${this.radius * 5}px 'Oxanium'`;
+            this.ctx.fillText(this.symbols[Math.floor(Math.random() * this.symbols.length)], 0, 0);
+            this.ctx.restore();
+        }
+
+        update() {
+            this.x += this.velocity.x;
+            this.y += this.velocity.y;
+            this.rotation += 0.02;
+
+            if (this.x > this.canvas.width + 20) this.x = -20;
+            if (this.x < -20) this.x = this.canvas.width + 20;
+            if (this.y > this.canvas.height + 20) this.y = -20;
+            if (this.y < -20) this.y = this.canvas.height + 20;
+        }
+    }
+
+    const initCanvas = () => {
+        const canvas = document.querySelector('.tech-canvas');
+        const ctx = canvas.getContext('2d');
+        const particles = [];
+        const particleCount = window.innerWidth < 768 ? 50 : 150;
+
+        const resizeCanvas = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+
+        const createParticles = () => {
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle(canvas, ctx));
+            }
+        };
+
+        const animate = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animate);
+        };
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            particles.length = 0;
+            createParticles();
+        });
+
+        resizeCanvas();
+        createParticles();
+        animate();
+    };
+
+    document.addEventListener('DOMContentLoaded', initCanvas);
+    </script>
+
+
+    <section id="projects" class="projects-section">
+        <h2 class="section-title" data-cursor>Engineering Projects</h2>
+        <div class="projects-grid">
+            <!-- Machine Vision -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project1MachineVision.jpg')"></div>
+                <div class="project-info">
+                    <h3>Machine Vision and Intelligence</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">Python</span>
+                        <span class="tech-item">OpenCV</span>
+                        <span class="tech-item">TensorFlow</span>
+                    </div>
+                    <p>Developed a vision-based hand gesture recognition system using machine learning techniques.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/Machine-Vision-and-Intelligence" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Communication Engineering -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project2CEP.jpg')"></div>
+                <div class="project-info">
+                    <h3>Communication Engineering Principles</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">MATLAB</span>
+                        <span class="tech-item">Simulink</span>
+                        <span class="tech-item">DSP</span>
+                    </div>
+                    <p>Designed and simulated amplitude modulation techniques using MATLAB and Simulink.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/Communication-Engineering-Principles" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Control Engineering -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project3CE.jpg')"></div>
+                <div class="project-info">
+                    <h3>Control Engineering</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">MATLAB</span>
+                        <span class="tech-item">Simulink</span>
+                        <span class="tech-item">PID Control</span>
+                    </div>
+                    <p>Created a vibration control system for a washing machine using MATLAB and Simulink.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/Control-Engineering" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- OOP Java -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project4Java.jpg')"></div>
+                <div class="project-info">
+                    <h3>OOP with Java</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">Java</span>
+                        <span class="tech-item">NetBeans</span>
+                        <span class="tech-item">MySQL</span>
+                    </div>
+                    <p>Built a Car Rental System with admin and customer interfaces using Java and NetBeans.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/OOP-with-Java-" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Hydroponic System -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project5Cpro.jpg')"></div>
+                <div class="project-info">
+                    <h3>Hydroponic System in C</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">C</span>
+                        <span class="tech-item">Embedded Systems</span>
+                        <span class="tech-item">Sensors</span>
+                    </div>
+                    <p>Designed a hydroponic system model to monitor and control pH, temperature, and humidity.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/Hidroponic-System-in-C-programming" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- C++ Programming -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project6Cpp.jpg')"></div>
+                <div class="project-info">
+                    <h3>OOP with C++ Programming</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">C++</span>
+                        <span class="tech-item">OOP</span>
+                        <span class="tech-item">Inventory Management</span>
+                    </div>
+                    <p>Developed an inventory and purchase management system using encapsulation and polymorphism.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/OOP-with-Cplusplus-Programming" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Digital Electronics -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project7DE.jpg')"></div>
+                <div class="project-info">
+                    <h3>Digital Electronics</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">Digital Circuits</span>
+                        <span class="tech-item">Logic Design</span>
+                        <span class="tech-item">Timers</span>
+                    </div>
+                    <p>Designed a multi-format digital timer circuit with a 2-bit control unit for timing configurations.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/Digital-Electronics" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Python Banking -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project8Python.png')"></div>
+                <div class="project-info">
+                    <h3>Python Banking System</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">Python</span>
+                        <span class="tech-item">CLI</span>
+                        <span class="tech-item">File Handling</span>
+                    </div>
+                    <p>Created a menu-driven banking application for account management.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/Python-Banking-System" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- DSP -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project9DSP.jpg')"></div>
+                <div class="project-info">
+                    <h3>Digital Signal Processing</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">MATLAB</span>
+                        <span class="tech-item">Signal Processing</span>
+                        <span class="tech-item">Filter Design</span>
+                    </div>
+                    <p>Analyzed and filtered noise using advanced DSP techniques.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/Digital-Signal-Processing" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Engineering Design -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project10ED.jpg')"></div>
+                <div class="project-info">
+                    <h3>Engineering Design (SolidWorks)</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">SolidWorks</span>
+                        <span class="tech-item">3D Modeling</span>
+                        <span class="tech-item">Mechanical Design</span>
+                    </div>
+                    <p>Modeled bumper car components like exhaust pipes and gas pedals using SolidWorks.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/Engineering-Design-Solidworks" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Electrical Systems -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project11IES.jpg')"></div>
+                <div class="project-info">
+                    <h3>Introduction to Electrical Systems</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">MATLAB</span>
+                        <span class="tech-item">Simscape</span>
+                        <span class="tech-item">Power Systems</span>
+                    </div>
+                    <p>Simulated electrical transformers and DC motors using MATLAB tools.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/Introduction-to-Electrical-System-Report" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Instrumentation -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project12IM.jpg')"></div>
+                <div class="project-info">
+                    <h3>Instrumentation and Measurements</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">LabVIEW</span>
+                        <span class="tech-item">Sensors</span>
+                        <span class="tech-item">Data Acquisition</span>
+                    </div>
+                    <p>Performed experiments to understand potentiometers, Wheatstone bridges, and operational amplifiers.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/Instrumentation-and-Measurements" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Analogue Electronics -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project13AE.jpg')"></div>
+                <div class="project-info">
+                    <h3>Analogue Electronics Report</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">SPICE</span>
+                        <span class="tech-item">Circuit Design</span>
+                        <span class="tech-item">Amplifiers</span>
+                    </div>
+                    <p>Designed and analyzed a three-stage amplifier circuit for signal amplification.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/Analogue-Electronic-Report" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Circuit Analysis -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project14AoC.jpg')"></div>
+                <div class="project-info">
+                    <h3>Analysis of Circuits</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">Network Analysis</span>
+                        <span class="tech-item">Impedance</span>
+                        <span class="tech-item">Circuit Theory</span>
+                    </div>
+                    <p>Measured Z and Y parameters of T and π networks for circuit verification.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/Analysis-of-Circuits-Report" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Networking -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project15Network.jpg')"></div>
+                <div class="project-info">
+                    <h3>Introduction to Networking</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">Cisco</span>
+                        <span class="tech-item">LAN</span>
+                        <span class="tech-item">Network Topology</span>
+                    </div>
+                    <p>Configured a LAN topology to connect offices in Kuala Lumpur and Penang.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/Introduction-to-Networking" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- HCI Website -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project17HCI.jpg')"></div>
+                <div class="project-info">
+                    <h3>Human-Computer Interaction Website</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">Figma</span>
+                        <span class="tech-item">UI/UX</span>
+                        <span class="tech-item">Prototyping</span>
+                    </div>
+                    <p>Designed a restaurant website prototype using Figma.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/Human-Computer-Interaction-Website-by-Figma" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Embedded Systems -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project17MSES.jpg')"></div>
+                <div class="project-info">
+                    <h3>Microprocessor Systems and Embedded Software</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">Embedded C</span>
+                        <span class="tech-item">Arduino</span>
+                        <span class="tech-item">Robotics</span>
+                    </div>
+                    <p>Developed a firefighting and rescue robot using sensors and microcontrollers.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/Microprocessor-Systems-and-Embedded-Software-MSES" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- VLSI -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project18VLSI.jpg')"></div>
+                <div class="project-info">
+                    <h3>VLSI Report and Lab</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">VHDL</span>
+                        <span class="tech-item">FPGA</span>
+                        <span class="tech-item">Digital Design</span>
+                    </div>
+                    <p>Designed VHDL-based digital components like multiplexers and counters.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/VLSI-Report-and-Lab" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Modern Communication -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/images/project19MCS.jpg')"></div>
+                <div class="project-info">
+                    <h3>Modern Communication Engineering</h3>
+                    <div class="project-tech">
+                        <span class="tech-item">IoT</span>
+                        <span class="tech-item">Network Simulation</span>
+                        <span class="tech-item">LoRaWAN</span>
+                    </div>
+                    <p>Implemented an IoT network simulation for data collection and transmission.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Owono2001/Modern-Communication-Engineering" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </section>
+
+    <section id="skills" class="skills-section">
+        <h2 class="section-title" data-cursor>Technical Skills</h2>
+        <div class="skills-grid">
+            <!-- Technical Skills -->
+            <div class="skill-category">
+                <h3><i class="fas fa-code skill-icon"></i> Technical Skills</h3>
+                <ul class="skill-list">
+                    <li class="skill-item">
+                        <i class="fas fa-caret-right skill-icon"></i>
+                        Programming: Python, C, C++, Java, R
+                    </li>
+                    <li class="skill-item">
+                        <i class="fas fa-caret-right skill-icon"></i>
+                        Web Development: HTML, CSS, Figma
+                    </li>
+                    <li class="skill-item">
+                        <i class="fas fa-caret-right skill-icon"></i>
+                        Embedded Systems: ROS2, Raspberry Pi
+                    </li>
+                    <li class="skill-item">
+                        <i class="fas fa-caret-right skill-icon"></i>
+                        AI & Machine Learning: OpenCV
+                    </li>
+                </ul>
+            </div>
+    
+            <!-- Core Competencies -->
+            <div class="skill-category">
+                <h3><i class="fas fa-tasks skill-icon"></i> Core Competencies</h3>
+                <ul class="skill-list">
+                    <li class="skill-item">
+                        <i class="fas fa-caret-right skill-icon"></i>
+                        Design of autonomous robotics systems
+                    </li>
+                    <li class="skill-item">
+                        <i class="fas fa-caret-right skill-icon"></i>
+                        3D modeling and prototyping
+                    </li>
+                    <li class="skill-item">
+                        <i class="fas fa-caret-right skill-icon"></i>
+                        IoT integration and implementation
+                    </li>
+                    <li class="skill-item">
+                        <i class="fas fa-caret-right skill-icon"></i>
+                        Software optimization for performance
+                    </li>
+                </ul>
+            </div>
+    
+            <!-- Notable Achievements -->
+            <div class="skill-category">
+                <h3><i class="fas fa-trophy skill-icon"></i> Notable Achievements</h3>
+                <ul class="skill-list">
+                    <li class="skill-item">
+                        <i class="fas fa-caret-right skill-icon"></i>
+                        Created an ANIAS robot for autonomous navigation
+                    </li>
+                    <li class="skill-item">
+                        <i class="fas fa-caret-right skill-icon"></i>
+                        Built a Car Rental System in Java
+                    </li>
+                    <li class="skill-item">
+                        <i class="fas fa-caret-right skill-icon"></i>
+                        Developed gesture-based machine vision systems
+                    </li>
+                    <li class="skill-item">
+                        <i class="fas fa-caret-right skill-icon"></i>
+                        Designed advanced noise-reduction DSP systems
+                    </li>
+                </ul>
+            </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+<section id="experience" class="experience-section">
+    <h2 class="section-title" data-cursor>Experience</h2>
+  
+    <div class="experience-card">
+      <div class="experience-logo">
+        <img src="assets/images/apu_logo.png" alt="APU Logo">
+      </div>
+      <div class="experience-content">
+        <h3>Engineer Intern</h3>
+        <p><strong>Asia Pacific University</strong> · Internship</p>
+        <p><em>Jun 2024 - Sep 2024 · 4 months</em></p>
+        <p>Malaysia · On-site</p>
+        <p>
+          Worked on robotic systems' design, 3D printing, and motion mapping.
+          Enhanced robotic functionality and participated in development milestones.
+        </p>
+      </div>
+    </div>
+    
+    <!-- Internship Picture Gallery -->
+    <section class="slideshow-section">
+      <h3 class="slideshow-title">Internship Picture Gallery</h3>
+      <div class="slideshow-container" id="picture-slideshow">
+        <!-- Slides -->
+        <div class="slide active">
+          <img src="assets/images/Teams.jpg" alt="Internship Team">
+          <p>Internship Team</p>
+        </div>
+        <div class="slide">
+          <img src="assets/images/Robot_Assembling.jpg" alt="Robot Assembly">
+          <p>Robot Assembly</p>
+        </div>
+        <div class="slide">
+          <img src="assets/images/Assembling_Training.jpg" alt="Training">
+          <p>Training</p>
+        </div>
+        <div class="slide">
+          <img src="assets/images/TeamsPresentation.jpg" alt="Presentation">
+          <p>Training</p>
+        </div>
+        <div class="slide">
+          <img src="assets/images/pedro.jpg" alt="Team 6 for Hackaton">
+          <p>Training</p>
+        </div>
+        <div class="slide">
+          <img src="assets/images/ExpositionIdea.jpg" alt="Idea Concept">
+          <p>Training</p>
+        </div>
+        <div class="slide">
+          <img src="assets/images/Event_Exposition.jpg" alt="Presentation">
+          <p>Training</p>
+        </div>
+        <!-- Navigation Dots -->
+        <div class="dots-container" id="picture-dots"></div>
+      </div>
+    </section>
+  
+    <!-- Internship Video Gallery -->
+    <section class="slideshow-section">
+      <h3 class="slideshow-title">Internship Video Gallery</h3>
+      <div class="slideshow-container" id="video-slideshow">
+        <!-- Slides -->
+        <div class="slide active">
+          <video controls muted loop>
+            <source src="assets/videos/robot_Fully.mp4" type="video/mp4">
+          </video>
+          <p>Robot Fully Assembled</p>
+        </div>
+        <div class="slide">
+          <video controls muted loop>
+            <source src="assets/videos/robot_demo1.mp4" type="video/mp4">
+          </video>
+          <p>Robot Navigation Demo 1</p>
+        </div>
+        <div class="slide">
+          <video controls muted loop>
+            <source src="assets/videos/robot_demo2.mp4" type="video/mp4">
+          </video>
+          <p>Robot Navigation Demo 2</p>
+        </div>
+        <div class="slide">
+          <video controls muted loop>
+            <source src="assets/videos/robot_demo3.mp4" type="video/mp4">
+          </video>
+          <p>Robot Navigation Demo 3</p>
+        </div>
+        <div class="slide">
+          <video controls muted loop>
+            <source src="assets/videos/robot_demo4.mp4" type="video/mp4">
+          </video>
+          <p>Robot Navigation Demo 4</p>
+        </div>
+        <div class="slide">
+          <video controls muted loop>
+            <source src="assets/videos/robot_demo6.mp4" type="video/mp4">
+          </video>
+          <p>Robot Navigation Demo 6</p>
+        </div>
+        <div class="slide">
+          <video controls muted loop>
+            <source src="assets/videos/robot_demosntration.mp4" type="video/mp4">
+          </video>
+          <p>Robot Navigation Demonstration</p>
+        </div>
+        <div class="slide">
+          <video controls muted loop>
+            <source src="assets/videos/robot_demonstration2.mp4" type="video/mp4">
+          </video>
+          <p>Robot Navigation Demonstration 2</p>
+        </div>
+        <!-- Navigation Dots -->
+        <div class="dots-container" id="video-dots"></div>
+      </div>
+    </section>
+  </section>
+
+<section id="about" class="about-section">
+    <h2 class="section-title" data-cursor>About Me</h2>
+    <div class="about-content">
+        <img src="assets/images/profile2.jpg" alt="Pedro Fabian Owono" class="profile-pic">
+        <div class="about-container">
+            <h2>Hi, I'm Pedro Fabian Owono</h2>
+            <p>
+                A <span class="highlight">passionate engineering student</span> combining technical expertise with creativity to deliver innovative solutions. 
+                Pursuing <span class="highlight">Computer Engineering</span> at the Asia Pacific University of Technology and Innovation, I have been dedicated to developing projects that merge technology with real-world applications.
+            </p>
+            <p>
+                Beyond engineering, I have a strong interest in <span class="highlight">music production</span> and <span class="highlight">robotics design</span>. I am driven by the pursuit of impactful projects that make a difference.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact-section">
+    <h2 class="section-title" data-cursor>Contact Me</h2>
+    <div class="contact-container">
+        <form action="https://formspree.io/f/xqaezjbb" method="POST">
+            <div class="form-row">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-row">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="_replyto" placeholder="Enter your email" required>
+            </div>
+            <div class="form-row">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </div>
+
+    <section class="social-media-section">
+        <h3 class="social-title">Connect with Me on Social Media</h3>
+        <div class="social-media-links">
+            <a href="https://www.instagram.com/owono2001/?hl=en" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/owono2001" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.snapchat.com/add/pedromangue24" target="_blank" title="Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+            <a href="https://open.spotify.com/playlist/1ovl1EfATYpVidXAP4d0nH?utm_medium=share&utm_source=linktree" target="_blank" title="Spotify"><i class="fab fa-spotify"></i></a>
+            <a href="https://x.com/owono_pedro" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://discord.com/channels/@me" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+        </div>
+    </section>
+</section>
+
+    <!-- Load JavaScript at bottom -->
+    <script src="app.js"></script>
+    <footer>
+        <p>&copy; 2025 Pedro Fabian Owono. All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="#" target="_blank" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="#" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+    </footer>
+</body>
+</html>
