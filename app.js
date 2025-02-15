@@ -367,219 +367,67 @@
         initSlideshow('video-slideshow', 'video-dots');
     });
 
-    // ======== LYRICS DISPLAY SYSTEM ========
-    const gearsAndTearsLyrics = [
-        { time: 0,   text: "🔥 'Gears and Tears' 🔥 - A Flamenco Ballad of Engineering Struggles" },
-        { time: 3,   text: "(Intro – slow, melancholic guitar strums, soft tapping on the cajón)" },
-    
-        { time: 8,   text: "[Verse 1]" },
-        { time: 10,  text: "Mama, why I choose this way?" },
-        { time: 14,  text: "Circuit boards and numbers play..." },
-        { time: 18,  text: "Mind so pening, kepala berat," },
-        { time: 22,  text: "Books all open, but brain just shut." },
-        { time: 26,  text: "Sitting here, kopi cold," },
-        { time: 29,  text: "Midnight oil, story old..." },
-        { time: 33,  text: "Professor talk, I nod my head," },
-        { time: 37,  text: "But in my mind, I sudah dead." },
-        { time: 42,  text: "(Deep, sorrowful guitar riff, then tempo picks up slightly)" },
-    
-        { time: 46,  text: "[Chorus]" },
-        { time: 48,  text: "Ohhh, these gears, they turn, but I don’t know how," },
-        { time: 52,  text: "Equations dancing, but my brain say ciao." },
-        { time: 56,  text: "Every page I read, like foreign spell," },
-        { time: 60,  text: "I try so hard, but still masuk neraka hell!" },
-        { time: 64,  text: "(Claps, foot stomps, intensity rising)" },
-    
-        { time: 68,  text: "[Verse 2]" },
-        { time: 70,  text: "Brother, they say, 'Just work smart,'" },
-        { time: 74,  text: "But in this game, must break my heart." },
-        { time: 78,  text: "Matlab crash, code all wrong," },
-        { time: 82,  text: "One assignment take me so damn long!" },
-        { time: 86,  text: "Thermo laws, stress and strain," },
-        { time: 90,  text: "Euler laugh inside my pain!" },
-        { time: 94,  text: "Professor say, 'Just visualize…'" },
-        { time: 98,  text: "Brother, I try, but my brain just dies!" },
-        { time: 102, text: "(Guitar solo, heavy on the emotion, then a softer bridge)" },
-    
-        { time: 106, text: "[Bridge] (slower, almost whispering)" },
-        { time: 108, text: "Tolong lah, Tuhan, kasi chance sikit," },
-        { time: 112, text: "Finals coming, must naik legit…" },
-        { time: 116, text: "Mama call, 'Anak, you makan?'" },
-        { time: 120, text: "How to eat, when GPA sinking, man?" },
-        { time: 124, text: "(Drums kick back in, energy surges again!)" },
-    
-        { time: 128, text: "[Chorus]" },
-        { time: 130, text: "Ohhh, these gears, they turn, but I don’t know how," },
-        { time: 134, text: "Equations dancing, but my brain say ciao." },
-        { time: 138, text: "Every page I read, like foreign spell," },
-        { time: 142, text: "I try so hard, but still masuk neraka hell!" },
-    
-        { time: 146, text: "[Verse 3] (faster, desperation in the voice)" },
-        { time: 148, text: "I see my friends, they got it right," },
-        { time: 152, text: "One try only, so damn bright!" },
-        { time: 156, text: "I ask them, 'Bro, teach me please?'" },
-        { time: 160, text: "They say 'Easy lah!' but I still freeze!" },
-        { time: 164, text: "Test come near, heart go BOOM," },
-        { time: 168, text: "Library floor, my second room…" },
-        { time: 172, text: "Assignment due, lecturer cold," },
-        { time: 176, text: "“No late work,” man, why so bold??" },
-        { time: 180, text: "(Another short but sharp guitar solo, heavy strumming, tapping, raw emotion!)" },
-    
-        { time: 184, text: "[Chorus – last time, louder, full desperation!]" },
-        { time: 186, text: "Ohhh, these gears, they turn, but I don’t know how," },
-        { time: 190, text: "Equations laughing, my brain say ciao." },
-        { time: 194, text: "I swear I study, I try, I try," },
-        { time: 198, text: "But one more failure, I surely die!" },
-    
-        { time: 202, text: "[Outro] (softly, emotional, as if losing strength)" },
-        { time: 205, text: "Maybe one day, I will see," },
-        { time: 209, text: "A world where formulas don’t kill me..." },
-        { time: 213, text: "Till then I fight, I cry, I bleed," },
-        { time: 217, text: "Final year, please let me be free…" },
-        { time: 221, text: "(Guitar fades, slow rhythmic claps, a deep sigh… the struggle continues.)" },
-    ];
-    
-    /*************************************
-     * Because you want the same lyrics for
-     * both songs, we do this:
-     *************************************/
-    const lyricsSong1 = gearsAndTearsLyrics;
-    const lyricsSong2 = gearsAndTearsLyrics;
-    
-    /*************************************
-     * 2) Grab references to needed DOM
-     *************************************/
-    const lyricsDisplay = document.getElementById('lyricsDisplay');
-    
-    /*************************************
-     * 3) A helper function to pick the
-     *    correct lyric line based on
-     *    currentTime
-     *************************************/
-    function getLyricLine(lyricsArray, currentTime) {
-        // Start with the first line
-        let lineToShow = "";
-        for (let i = 0; i < lyricsArray.length; i++) {
-        // If this lyric’s start time <= currentTime, it’s eligible
-        if (lyricsArray[i].time <= currentTime) {
-            lineToShow = lyricsArray[i].text;
-        } else {
-            // The moment we find a line whose time is > currentTime, we stop
-            break;
-        }
-        }
-        return lineToShow;
-    }
-    
-    /*************************************
-     * 4) Update lyrics while Song 1 plays
-     *************************************/
-    song1.addEventListener("timeupdate", () => {
-        if (song1.paused) return;
-        const current = song1.currentTime;
-        const lyric = getLyricLine(lyricsSong1, current);
-        lyricsDisplay.textContent = lyric;
-    });
-    
-    /*************************************
-     * 5) Update lyrics while Song 2 plays
-     *************************************/
-    song2.addEventListener("timeupdate", () => {
-        if (song2.paused) return;
-        const current = song2.currentTime;
-        const lyric = getLyricLine(lyricsSong2, current);
-        lyricsDisplay.textContent = lyric;
-    });
-    
-    /*************************************
-     * 6) Clear lyrics when user pauses
-     *    or switches from one song to another
-     *************************************/
-    song1.addEventListener("pause", () => {
-        // If you want to CLEAR the text whenever song1 is paused:
-        // lyricsDisplay.textContent = "";
-    });
-    
-    song2.addEventListener("pause", () => {
-        // lyricsDisplay.textContent = "";
-    });
-    
-    /*************************************
-     * 7) If you have logic that stops the other
-     *    song before playing the new one,
-     *    also clear lyrics there
-     *************************************/
-    function stopOtherSong(otherSong, otherBtn) {
-        otherSong.pause();
-        otherSong.currentTime = 0;
-        otherBtn.textContent = otherBtn.textContent.replace('Pause', 'Play');
-        // Clear lyrics if you want them gone when switching songs:
-        lyricsDisplay.textContent = "";
-    }
-    
-    /*************************************
-     * 8) Existing code that sets up
-     *    your toggleSong1Btn / toggleSong2Btn
-     *************************************/
+    // === Grab References to Audio & Buttons ===
     document.addEventListener('DOMContentLoaded', () => {
         const song1 = document.getElementById('song1');
         const song2 = document.getElementById('song2');
         const toggleSong1Btn = document.getElementById('toggleSong1Btn');
         const toggleSong2Btn = document.getElementById('toggleSong2Btn');
-        
+
         let song1Playing = false;
         let song2Playing = false;
-    
-        // Replaces your existing "stopOtherSong" with the new version above:
-        // function stopOtherSong(...) { ... } – already declared above
-    
+
+        // Function to stop one song when the other starts
+        function stopOtherSong(otherSong, otherBtn) {
+            otherSong.pause();
+            otherSong.currentTime = 0;
+            otherBtn.textContent = otherBtn.textContent.replace('Pause', 'Play');
+        }
+
         // Toggle Song 1
         toggleSong1Btn.addEventListener('click', () => {
-        if (!song1Playing) {
-            // If Song 2 was playing, stop it
-            if (song2Playing) {
-            stopOtherSong(song2, toggleSong2Btn);
-            song2Playing = false;
+            if (!song1Playing) {
+                if (song2Playing) {
+                    stopOtherSong(song2, toggleSong2Btn);
+                    song2Playing = false;
+                }
+
+                song1.play().then(() => {
+                    song1Playing = true;
+                    toggleSong1Btn.textContent = 'Pause Song 1';
+                }).catch(err => {
+                    console.log('Song 1 play blocked:', err);
+                });
+            } else {
+                song1.pause();
+                song1Playing = false;
+                toggleSong1Btn.textContent = 'Play Song 1';
             }
-            // Attempt to play Song 1
-            song1.play().then(() => {
-            song1Playing = true;
-            toggleSong1Btn.textContent = 'Pause Song 1';
-            }).catch(err => {
-            console.log('Song 1 play blocked:', err);
-            });
-        } else {
-            // Pause Song 1
-            song1.pause();
-            song1Playing = false;
-            toggleSong1Btn.textContent = 'Play Song 1';
-        }
         });
-    
+
         // Toggle Song 2
         toggleSong2Btn.addEventListener('click', () => {
-        if (!song2Playing) {
-            // If Song 1 was playing, stop it
-            if (song1Playing) {
-            stopOtherSong(song1, toggleSong1Btn);
-            song1Playing = false;
+            if (!song2Playing) {
+                if (song1Playing) {
+                    stopOtherSong(song1, toggleSong1Btn);
+                    song1Playing = false;
+                }
+
+                song2.play().then(() => {
+                    song2Playing = true;
+                    toggleSong2Btn.textContent = 'Pause Song 2';
+                }).catch(err => {
+                    console.log('Song 2 play blocked:', err);
+                });
+            } else {
+                song2.pause();
+                song2Playing = false;
+                toggleSong2Btn.textContent = 'Play Song 2';
             }
-            // Attempt to play Song 2
-            song2.play().then(() => {
-            song2Playing = true;
-            toggleSong2Btn.textContent = 'Pause Song 2';
-            }).catch(err => {
-            console.log('Song 2 play blocked:', err);
-            });
-        } else {
-            // Pause Song 2
-            song2.pause();
-            song2Playing = false;
-            toggleSong2Btn.textContent = 'Play Song 2';
-        }
         });
     });
 
+    // ======== PARALLAX SCROLLING ========
     document.addEventListener('DOMContentLoaded', () => {
         // Make sure ScrollTrigger is registered
         gsap.registerPlugin(ScrollTrigger);

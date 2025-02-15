@@ -972,6 +972,8 @@ img.loaded, video.loaded {
     opacity: 1;
 }
 
+
+
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
     :root { 
