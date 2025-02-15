@@ -57,8 +57,8 @@
         const animateParticles = (time) => {
             requestAnimationFrame(animateParticles);
             const delta = time - lastFrameTime;
-            particleMesh.rotation.x += 0.001 * delta * animationMultiplier;
-            particleMesh.rotation.y += 0.001 * delta * animationMultiplier;
+            particleMesh.rotation.x += 0.000008 * delta * animationMultiplier;
+            particleMesh.rotation.y += 0.000008 * delta * animationMultiplier;
             particleGeometry.attributes.position.needsUpdate = true;
             renderer.render(scene, camera);
             lastFrameTime = time;
