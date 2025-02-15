@@ -721,19 +721,6 @@ body {
     max-width: 500px;
   }
 
-  .lyrics-display {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.3);
-    color: #00f3ff; /* or your neon color preference */
-    border: 2px solid #00f3ff;
-    border-radius: 5px;
-    min-height: 3rem;  /* so there's a consistent box even if empty */
-    text-align: center;
-    font-size: 1.1rem;
-    line-height: 1.6;
-  }
-
 
   /* ===== PARALLAX INTRO STYLES ===== */
 .intro-section {
