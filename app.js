@@ -632,7 +632,12 @@
         });
       });
 
+    
+    
 
+    
+
+    // ======== SLIDESHOW SYSTEM ========
     document.addEventListener('DOMContentLoaded', () => {
         initializeSlideshow('picture-slideshow', 'picture-dots');
         initializeSlideshow('video-slideshow', 'video-dots');
