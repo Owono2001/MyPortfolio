@@ -454,6 +454,8 @@ body {
     box-shadow: 0 0 20px rgba(255,0,255,0.3);
 }
 
+
+
 /* ===== SKILLS SECTION ===== */
 .skills-grid {
     display: grid;
@@ -481,6 +483,12 @@ body {
     display: flex;
     align-items: center;
     gap: 0.8rem;
+}
+/* Add some breathing room for Skills and About sections */
+.skills-section {
+    max-width: 1200px;      /* or whatever width you prefer */
+    margin: 0 auto;         /* center it */
+    padding: 4rem 2rem;     /* top/bottom & left/right padding */
 }
 
 /* ===== EXPERIENCE SECTION ===== */
@@ -527,8 +535,9 @@ body {
 
 /* ===== ABOUT SECTION ===== */
 .about-section {
-    background: transparent !important;
-    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
 }
 
 .about-content {
@@ -541,13 +550,16 @@ body {
 }
 
 .profile-pic {
-    width: 100%;
-    max-width: 400px;
+    /* Force a maximum width */
+    max-width: 250px;
+    /* Let the browser scale the height automatically */
     height: auto;
-    border: 3px solid var(--cyber-cyan);
-    box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
-}
-
+    /* Optionally center it if you want */
+    display: block;
+    margin: 0 auto;
+    /* Add a nice border or border-radius if desired */
+    border-radius: 8px;
+    }
 .about-container h2 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
@@ -756,20 +768,24 @@ body {
     margin: 1rem auto;
     overflow: hidden;
     border-radius: 8px;
+    /* Fix the container height to avoid bouncing. Adjust to taste: */
+    height: 400px;
 }
 
 .slide {
     position: absolute;
-    opacity: 0;
+    top: 0;
+    left: 0;
     width: 100%;
-    transition: all 0.5s ease-in-out;
+    height: 100%; /* Fill the container’s height so slides stack exactly */
+    opacity: 0;
     transform: translateX(100%);
+    transition: all 0.5s ease-in-out;
 }
 
 .slide.active {
     opacity: 1;
     transform: translateX(0);
-    position: relative;
 }
 
 .slide.prev {
@@ -778,15 +794,10 @@ body {
 
 .slide img, .slide video {
     width: 100%;
-    height: 300px;
-    object-fit: cover;
+    height: 100%;
+    object-fit: cover; /* or “contain,” if you want letterboxing instead of cropping */
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.slide video {
-    background-color: #000;
-    object-fit: contain;
 }
 
 /* ===== VISUAL EFFECTS ===== */
