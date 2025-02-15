@@ -29,41 +29,55 @@
 <body>
     
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">PFO</div>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#experience">Experience</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
+<nav class="navbar">
+    <div class="logo">PFO</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+  
+  <!-- Cinematic Intro Section (pinned or parallax) -->
+  <section id="cinematicIntro" class="intro-section section">
+    <!-- Layer 1: Distant Background -->
+    <div class="intro-layer layer-bg"></div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="name-container">
-                <h1>Pedro Fabian Owono</h1>
-            </div>
-            
-            <p class="hero-description">
-                Bridging software solutions through innovative engineering and computational thinking.<br> 
-            </p>
-    
-            <div class="hero-links">
-                <a href="#projects" class="cyber-button">
-                    <i class="fas fa-code"></i>
-                    View Projects
-                </a>
-                <a href="#contact" class="cyber-button">
-                    <i class="fas fa-envelope"></i>
-                    Contact Me
-                </a>
-            </div>
-        </div>
-    </section>
+  
+    <!-- Layer 3: Foreground & Title -->
+    <div class="intro-layer layer-front">
+      <h1 class="intro-title">Welcome to My Portfolio</h1>
+    </div>
+  </section>
+  
+  <!-- Hero Section (below intro) with ONE image -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <div class="name-container">
+        <h1>Pedro Fabian Owono</h1>
+      </div>
+      
+      <p class="hero-description">
+        Bridging software solutions through innovative engineering 
+        and computational thinking.<br>
+      </p>
+
+  
+      <div class="hero-links">
+        <a href="#projects" class="cyber-button">
+          <i class="fas fa-code"></i>
+          View Projects
+        </a>
+        <a href="#contact" class="cyber-button">
+          <i class="fas fa-envelope"></i>
+          Contact Me
+        </a>
+      </div>
+    </div>
+  </section>
 
     
     <script>
@@ -643,7 +657,7 @@
           <img src="assets/images/pedro.jpg" alt="Team 6 for Hackaton">
           <p>Training</p>
         </div>
-        
+
         <!-- Navigation Dots -->
         <div class="dots-container" id="picture-dots"></div>
       </div>
@@ -725,6 +739,45 @@
     </div>
 </section>
 
+<!-- Music Section -->
+<section id="music" class="music-section">
+    <h2 class="section-title" data-cursor>Choose a Background Track</h2>
+    <div class="music-container">
+      
+      <!-- We'll have two hidden <audio> elements: -->
+      <audio 
+        id="song1" 
+        src="assets/audio/song1.mp3" 
+        loop 
+        preload="auto">
+      </audio>
+      
+      <audio 
+        id="song2" 
+        src="assets/audio/song2.mp3" 
+        loop 
+        preload="auto">
+      </audio>
+      
+      <!-- Two buttons to toggle each song -->
+      <div class="music-buttons">
+        <button id="toggleSong1Btn" class="music-btn">Play Song 1</button>
+        <button id="toggleSong2Btn" class="music-btn">Play Song 2</button>
+      </div>
+      
+      <p class="music-note">
+        <strong>Note:</strong> Modern browsers block autoplay. 
+        Please click “Play” to start the music.
+      </p>
+
+      <!-- The lyric line will appear here -->
+      <div id="lyricsDisplay" class="lyrics-display"></div>
+      
+    </div>
+  </section>
+
+
+<!-- Contact Session -->
 <section id="contact" class="contact-section">
     <h2 class="section-title" data-cursor>Contact Me</h2>
     <div class="contact-container">

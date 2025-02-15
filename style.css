@@ -674,6 +674,127 @@ body {
     animation: icon-glitch 0.3s linear 2;
 }
 
+/* === MUSIC SECTION STYLES === */
+.music-section {
+    /* You can mimic your existing “section” style or do your own. */
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 3rem 2rem;
+    background: rgba(16, 16, 32, 0.6);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-radius: 8px;
+  }
+  
+  .music-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .music-buttons {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+  }
+  
+  .music-btn {
+    padding: 1rem 1.5rem;
+    font-family: 'Oxanium', sans-serif;
+    font-size: 1rem;
+    border: 2px solid var(--cyber-cyan);
+    background: rgba(0,0,0,0.3);
+    color: var(--cyber-cyan);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .music-btn:hover {
+    background: rgba(0, 243, 255, 0.2);
+  }
+  
+  .music-note {
+    color: #ccc;
+    font-size: 0.9rem;
+    text-align: center;
+    max-width: 500px;
+  }
+
+  .lyrics-display {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    color: #00f3ff; /* or your neon color preference */
+    border: 2px solid #00f3ff;
+    border-radius: 5px;
+    min-height: 3rem;  /* so there's a consistent box even if empty */
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+
+  /* ===== PARALLAX INTRO STYLES ===== */
+.intro-section {
+    /* This container fills one viewport height */
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; /* Hide any overflow if images are larger than 100vh */
+  }
+  
+  /* Each .intro-layer absolutely fills the intro-section,
+     so we can move them independently for parallax. */
+  .intro-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  /* Example: The 'distant' background image */
+  .layer-bg {
+    background-image: url("assets/images/bg-intro4.jpg");
+    z-index: 4;
+  }
+  
+  /* The 'foreground' layer with main heading or overlay text */
+  .layer-front {
+    z-index: 3; /* topmost of these three layers */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* optional tinted overlay:
+       background: rgba(0,0,0,0.2); */
+  }
+  
+  .intro-title {
+    font-size: 4rem;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(0,243,255,0.5);
+    line-height: 1.2;
+  }
+
+  .hero-image-container {
+    text-align: center;     /* center the image horizontally */
+    margin-top: 1.5rem;     /* spacing above the image */
+  }
+  
+  .hero-img {
+    max-width: 100px;       /* or 300px, or 50%—up to you */
+    width: 50%;            /* fallback to ensure responsive shrink */
+    height: auto;           /* keeps aspect ratio */
+    border-radius: 8px;     /* optional rounding */
+    display: inline-block;  /* needed for 'text-align: center' to center it */
+  }
+
+  
 @keyframes icon-glitch {
     0% { transform: translate(0) }
     25% { transform: translate(-2px, 1px) }
