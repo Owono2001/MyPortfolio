@@ -479,10 +479,6 @@
           ease: "power1.out",
         });
       });
-
-    
-    
-
     
 
     // ======== SLIDESHOW SYSTEM ========
@@ -578,6 +574,84 @@
             });
         });
     }
+
+    // ======== Audio Setup ========
+
+    // Background Music Audio for the relaxing piano.
+    let bgMusic = new Audio("assets/audio/relaxing-piano.mp3");
+    bgMusic.volume = 0.4; // Adjust volume as needed.
+    bgMusic.loop = false;
+
+    // Typing Beep Audio (played during typing).
+    let typeBeep = new Audio("assets/audio/type-beep.mp3");
+    typeBeep.volume = 0.2; // Lower volume for the beep.
+
+    // Flag to ensure audio plays only after user interaction.
+    let userHasInteracted = false;
+
+    // Define your full intro text (with newline characters for line breaks)
+    const introText =
+    "Full Name: Pedro Fabian Owono Ondo Mangue\n" +
+    "ID: TP063251\n" +
+    "University Name: Asia Pacific University of Technology and Innovation\n" +
+    "My Nationality: Equatorial Guinean\n" +
+    "My Current Goal: Complete my Final Year Project\n" +
+    "Final Year Project Topic: Speech Therapy Assistance Mobile Application";
+
+    // Typing effect function with a callback when finished.
+    function typeIntroText(text, elementId, speed = 40, callback) {
+    const element = document.getElementById(elementId);
+    let index = 0;
+    const beepInterval = 3; // Play beep on every 3rd character.
+
+    function typeCharacter() {
+        if (index < text.length) {
+        element.textContent += text.charAt(index);
+        // Play beep only on every beepInterval-th character if it's not just whitespace.
+        if (userHasInteracted && index % beepInterval === 0 && text.charAt(index).trim() !== "") {
+            typeBeep.currentTime = 0;
+            typeBeep.play().catch(err => {
+            console.warn("Beep sound prevented:", err);
+            });
+        }
+        index++;
+        setTimeout(typeCharacter, speed);
+        } else {
+        // When finished typing, call the callback.
+        if (typeof callback === "function") {
+            callback();
+        }
+        }
+    }
+    typeCharacter();
+    }
+
+    // Wait for the DOM to fully load.
+    document.addEventListener('DOMContentLoaded', () => {
+    const enterSiteBtn = document.getElementById('enterSiteBtn');
+    const introScreen = document.getElementById('intro-screen');
+
+    // When the user clicks the "Enter the Website" button:
+    enterSiteBtn.addEventListener('click', () => {
+        userHasInteracted = true;  // Now allow audio to play.
+        
+        // Start the typing effect.
+        typeIntroText(introText, "intro-typed-text", 40, () => {
+        // Once the typing is complete, start the relaxing piano background music.
+        bgMusic.play().catch(err => {
+            console.warn("Background music play prevented:", err);
+        });
+        
+        // Fade out and hide the intro screen.
+        introScreen.style.transition = "opacity 0.5s ease";
+        introScreen.style.opacity = "0";
+        setTimeout(() => {
+            introScreen.style.display = "none";
+        }, 500);
+        });
+    });
+    });
+
 
     // Prevent Mobile Zoom
     document.addEventListener('touchmove', function(e) {
