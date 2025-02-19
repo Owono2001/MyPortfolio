@@ -30,12 +30,11 @@
 <body>
 
 
-    <!-- ===== FULL-SCREEN INTRO ===== -->
+    <!-- Intro Section -->
     <div id="intro-screen" class="intro-screen">
         <div class="intro-content">
-        <!-- Container where the text will be typed out -->
-        <div id="intro-typed-text" class="intro-typed-text"></div>
-        <button id="enterSiteBtn" class="enter-site-btn">Enter the Website</button>
+            <h2 id="character-text"></h2>
+            <button id="startButton" class="enter-site-btn">Enter the Website</button>
         </div>
     </div>
     
@@ -751,40 +750,6 @@
         </div>
     </div>
 </section>
-
-<!-- Music Section -->
-<section id="music" class="music-section">
-    <h2 class="section-title" data-cursor>Choose a Background Track</h2>
-    <div class="music-container">
-      
-      <!-- We'll have two hidden <audio> elements: -->
-      <audio 
-        id="song1" 
-        src="assets/audio/song1.mp3" 
-        loop 
-        preload="auto">
-      </audio>
-      
-      <audio 
-        id="song2" 
-        src="assets/audio/song2.mp3" 
-        loop 
-        preload="auto">
-      </audio>
-      
-      <!-- Two buttons to toggle each song -->
-      <div class="music-buttons">
-        <button id="toggleSong1Btn" class="music-btn">Play Song 1</button>
-        <button id="toggleSong2Btn" class="music-btn">Play Song 2</button>
-      </div>
-      
-      <p class="music-note">
-        <strong>Note:</strong> Modern browsers block autoplay. 
-        Please click “Play” to start the music.
-      </p>
-    </div>
-  </section>
-
 
 <!-- Contact Session -->
 <section id="contact" class="contact-section">

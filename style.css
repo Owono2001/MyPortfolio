@@ -279,10 +279,10 @@ body {
 
 .section-title {
     position: relative;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     text-align: center;
-    margin: 2rem 0 4rem;
-    padding: 1.5rem 0;
+    margin: 1rem 0 2rem;
+    padding: 1rem 0;
     background: linear-gradient(45deg, var(--cyber-cyan), var(--cyber-pink));
     -webkit-background-clip: text;
     background-clip: text;
@@ -674,53 +674,6 @@ body {
 .social-links a:hover i {
     animation: icon-glitch 0.3s linear 2;
 }
-
-/* === MUSIC SECTION STYLES === */
-.music-section {
-    /* You can mimic your existing “section” style or do your own. */
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 3rem 2rem;
-    background: rgba(16, 16, 32, 0.6);
-    border: 1px solid rgba(0, 243, 255, 0.2);
-    border-radius: 8px;
-  }
-  
-  .music-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
-  
-  .music-buttons {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-  }
-  
-  .music-btn {
-    padding: 1rem 1.5rem;
-    font-family: 'Oxanium', sans-serif;
-    font-size: 1rem;
-    border: 2px solid var(--cyber-cyan);
-    background: rgba(0,0,0,0.3);
-    color: var(--cyber-cyan);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .music-btn:hover {
-    background: rgba(0, 243, 255, 0.2);
-  }
-  
-  .music-note {
-    color: #ccc;
-    font-size: 0.9rem;
-    text-align: center;
-    max-width: 500px;
-  }
 
 
   /* ===== PARALLAX INTRO STYLES ===== */
@@ -1300,6 +1253,103 @@ body::after {
     z-index: 1001;
 }
 
+
+.particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  
+  .typing-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(45deg, #00ff88, #00a3ff);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particlePop 0.6s ease-out;
+  }
+  
+  @keyframes particlePop {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
+  }
+  
+  #character-text {
+    font-family: 'Courier New', monospace;
+    font-size: 1.2em;
+    background: linear-gradient(90deg, #00ff88, #00a3ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+  }
+
+/* ======= Intro Screen Styling ======= */
+.intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("assets/images/industrial-bg.jpg") no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 1s ease-in-out;
+}
+
+.intro-content {
+    text-align: center;
+    color: #00ff88;
+    font-family: 'Oxanium', sans-serif;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
+    max-width: 800px;
+}
+
+/* ======= Typing Text Effects ======= */
+#character-text {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5em;
+    font-weight: bold;
+    background: linear-gradient(90deg, #00ff88, #00a3ff);
+    -webkit-background-clip: text;
+    color: transparent;
+    display: inline-block;
+    text-align: left;
+    white-space: pre-wrap; /* Ensures proper formatting */
+}
+
+/* ======= Button Styling ======= */
+.enter-site-btn {
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    background: #00ff88;
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.enter-site-btn:hover {
+    background: #00a3ff;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* ======= Smooth Page Transition ======= */
+body {
+    transition: opacity 1s ease-in-out;
+}
+
+
 @media (max-width: 768px) {
     .menu-toggle {
         display: block;
@@ -1320,5 +1370,16 @@ body::after {
     
     .nav-links.active {
         right: 0;
+    }
+}
+
+/* Adjust title spacing for mobile */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1rem; /* Smaller size for mobile */
+        margin: 0.5rem 0 1.5rem; /* Bring closer to content */
+    }
+    .section {
+        padding: rem 5%;
     }
 }

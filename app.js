@@ -367,66 +367,6 @@
         initSlideshow('video-slideshow', 'video-dots');
     });
 
-    // === Grab References to Audio & Buttons ===
-    document.addEventListener('DOMContentLoaded', () => {
-        const song1 = document.getElementById('song1');
-        const song2 = document.getElementById('song2');
-        const toggleSong1Btn = document.getElementById('toggleSong1Btn');
-        const toggleSong2Btn = document.getElementById('toggleSong2Btn');
-
-        let song1Playing = false;
-        let song2Playing = false;
-
-        // Function to stop one song when the other starts
-        function stopOtherSong(otherSong, otherBtn) {
-            otherSong.pause();
-            otherSong.currentTime = 0;
-            otherBtn.textContent = otherBtn.textContent.replace('Pause', 'Play');
-        }
-
-        // Toggle Song 1
-        toggleSong1Btn.addEventListener('click', () => {
-            if (!song1Playing) {
-                if (song2Playing) {
-                    stopOtherSong(song2, toggleSong2Btn);
-                    song2Playing = false;
-                }
-
-                song1.play().then(() => {
-                    song1Playing = true;
-                    toggleSong1Btn.textContent = 'Pause Song 1';
-                }).catch(err => {
-                    console.log('Song 1 play blocked:', err);
-                });
-            } else {
-                song1.pause();
-                song1Playing = false;
-                toggleSong1Btn.textContent = 'Play Song 1';
-            }
-        });
-
-        // Toggle Song 2
-        toggleSong2Btn.addEventListener('click', () => {
-            if (!song2Playing) {
-                if (song1Playing) {
-                    stopOtherSong(song1, toggleSong1Btn);
-                    song1Playing = false;
-                }
-
-                song2.play().then(() => {
-                    song2Playing = true;
-                    toggleSong2Btn.textContent = 'Pause Song 2';
-                }).catch(err => {
-                    console.log('Song 2 play blocked:', err);
-                });
-            } else {
-                song2.pause();
-                song2Playing = false;
-                toggleSong2Btn.textContent = 'Play Song 2';
-            }
-        });
-    });
-
     // ======== PARALLAX SCROLLING ========
     document.addEventListener('DOMContentLoaded', () => {
         // Make sure ScrollTrigger is registered
@@ -577,56 +517,142 @@
 
     // ======== Audio Setup ========
 
-    // Background Music Audio for the relaxing piano.
-    let bgMusic = new Audio("assets/audio/relaxing-piano.mp3");
-    bgMusic.volume = 0.4; // Adjust volume as needed.
-    bgMusic.loop = false;
+    // ======== Advanced Character Animation System ========
+// ======== Advanced Character Animation System ========
+    class CharacterAnimator {
+        constructor() {
+            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            this.bgMusicSource = null;
+            this.typeBuffer = null;
+            this.isAudioReady = false;
+            this.typingQueue = [];
+            this.currentAnimationFrame = null;
+            this.bgMusicGain = null;
+            this.init().catch(console.error);
+        }
 
-    // Typing Beep Audio (played during typing).
-    let typeBeep = new Audio("assets/audio/type-beep.mp3");
-    typeBeep.volume = 0.2; // Lower volume for the beep.
+        async init() {
+            await this.loadAudioResources();
+            this.setupAudio();
+            this.addEventListeners();
+        }
 
-    // Flag to ensure audio plays only after user interaction.
-    let userHasInteracted = false;
+        async loadAudioResources() {
+            const [bgMusicRes, typeBeepRes] = await Promise.all([
+                fetch('assets/audio/relaxing-piano.mp3'),
+                fetch('assets/audio/type-beep.mp3')
+            ]);
 
-    // Define your full intro text (with newline characters for line breaks)
-    const introText =
-    "Full Name: Pedro Fabian Owono Ondo Mangue\n" +
-    "ID: TP063251\n" +
-    "University Name: Asia Pacific University of Technology and Innovation\n" +
-    "My Nationality: Equatorial Guinean\n" +
-    "My Current Goal: Complete my Final Year Project\n" +
-    "Final Year Project Topic: Speech Therapy Assistance Mobile Application";
+            const [bgMusicArrayBuffer, typeBeepArrayBuffer] = await Promise.all([
+                bgMusicRes.arrayBuffer(),
+                typeBeepRes.arrayBuffer()
+            ]);
 
-    // Typing effect function with a callback when finished.
-    function typeIntroText(text, elementId, speed = 40, callback) {
-    const element = document.getElementById(elementId);
-    let index = 0;
-    const beepInterval = 3; // Play beep on every 3rd character.
+            this.bgMusicBuffer = await this.audioContext.decodeAudioData(bgMusicArrayBuffer);
+            this.typeBuffer = await this.audioContext.decodeAudioData(typeBeepArrayBuffer);
+            this.isAudioReady = true;
+        }
 
-    function typeCharacter() {
-        if (index < text.length) {
-        element.textContent += text.charAt(index);
-        // Play beep only on every beepInterval-th character if it's not just whitespace.
-        if (userHasInteracted && index % beepInterval === 0 && text.charAt(index).trim() !== "") {
-            typeBeep.currentTime = 0;
-            typeBeep.play().catch(err => {
-            console.warn("Beep sound prevented:", err);
+        setupAudio() {
+            this.pannerNode = this.audioContext.createPanner();
+            this.pannerNode.panningModel = 'HRTF';
+
+            this.bgMusicGain = this.audioContext.createGain();
+            this.bgMusicGain.gain.value = 0; // Start at 0 volume (fade in later)
+            
+            this.pannerNode.connect(this.audioContext.destination);
+        }
+
+        addEventListeners() {
+            document.getElementById('startButton').addEventListener('click', async () => {
+                await this.handleFirstInteraction();
+                await this.typeIntroText('character-text', introText, 12, () => {
+                    this.fadeInBackgroundMusic();
+                    this.transitionToMainPage();
+                });
             });
         }
-        index++;
-        setTimeout(typeCharacter, speed);
-        } else {
-        // When finished typing, call the callback.
-        if (typeof callback === "function") {
-            callback();
+
+        async handleFirstInteraction() {
+            if (!this.isAudioReady) return;
+
+            try {
+                await this.audioContext.resume();
+                this.startBackgroundMusic();
+                document.getElementById('startButton').style.display = 'none';
+            } catch (err) {
+                console.error('Audio playback failed:', err);
+            }
         }
+
+        startBackgroundMusic() {
+            this.bgMusicSource = this.audioContext.createBufferSource();
+            this.bgMusicSource.buffer = this.bgMusicBuffer;
+            this.bgMusicSource.loop = true;
+
+            this.bgMusicSource.connect(this.bgMusicGain).connect(this.pannerNode);
+            this.bgMusicSource.start();
         }
-    }
-    typeCharacter();
+
+        fadeInBackgroundMusic() {
+            if (!this.bgMusicGain) return;
+            this.bgMusicGain.gain.linearRampToValueAtTime(0.2, this.audioContext.currentTime + 2);
+        }
+
+        playTypeSound() {
+            if (!this.isAudioReady) return;
+
+            const source = this.audioContext.createBufferSource();
+            source.buffer = this.typeBuffer;
+
+            const gainNode = this.audioContext.createGain();
+            gainNode.gain.value = 0.1; // Lower beep volume.
+
+            source.connect(gainNode).connect(this.pannerNode);
+            source.start();
+        }
+
+        async typeIntroText(targetId, text, speed = 12, callback) {
+            const element = document.getElementById(targetId);
+            element.innerHTML = '';
+
+            for (let i = 0; i < text.length; i++) {
+                element.innerHTML += text[i];
+
+                if (text[i].trim()) {
+                    this.playTypeSound();
+                }
+
+                await new Promise(res => setTimeout(res, speed));
+            }
+
+            if (typeof callback === 'function') callback();
+        }
+
+        transitionToMainPage() {
+            setTimeout(() => {
+                const introScreen = document.getElementById('intro-screen');
+                introScreen.style.opacity = '0';
+                setTimeout(() => {
+                    introScreen.style.display = 'none';
+                }, 1000);
+            }, 500);
+        }
     }
 
-    // Wait for the DOM to fully load.
+    // ======== Initialize System ========
+    const animator = new CharacterAnimator();
+
+    // ======== Intro Text Content ========
+    const introText = "Full Name: Pedro Fabian Owono Ondo Mangue\n"
+        + "ID: TP063251\n"
+        + "University Name: Asia Pacific University of Technology and Innovation\n"
+        + "My Nationality: Equatorial Guinean\n"
+        + "My Current Goal: Complete my Final Year Project\n"
+        + "Final Year Project Topic: Speech Therapy Assistance Mobile Application";
+
+    // ======== DOM Interaction ========    
+  // Wait for the DOM to fully load.
     document.addEventListener('DOMContentLoaded', () => {
     const enterSiteBtn = document.getElementById('enterSiteBtn');
     const introScreen = document.getElementById('intro-screen');
