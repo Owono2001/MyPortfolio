@@ -1791,123 +1791,134 @@ body::after {
 }
 
 
-/* ======= MOBILE RESPONSIVENESS FIXES ======= */
-@media (max-width: 1024px) {
-    .hero h1 {
-        font-size: 3rem;
+
+/* ======= Mobile Phone ======= */
+@media (max-width: 768px) {
+    /* Hero Section Adjustments */
+    .hero-content h1 {
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
     }
+  
     .hero-description {
-        font-size: 1.2rem;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
     }
+  
+    /* Project Cards */
     .projects-grid {
-        grid-template-columns: 1fr;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
     }
-    .about-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-}
-
-@media (max-width: 768px) {
-    :root {
-        --section-padding: 5rem 3%;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    .hero-description {
-        font-size: 1rem;
-    }
+  
     .project-card {
-        pointer-events: auto !important;
+      margin-bottom: 1rem;
     }
-    .skills-grid, .projects-grid {
-        grid-template-columns: 1fr;
-    }
-    .custom-cursor {
-        display: none !important;
-    }
-    .menu-toggle {
-        display: block;
-        font-size: 2rem;
-        cursor: pointer;
-        padding: 1rem;
-        background: none;
-        border: none;
-        color: var(--cyber-cyan);
-    }
+  
+    /* Navigation Fix */
     .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        height: 100vh;
-        width: 75%;
-        background: var(--cyber-bg);
-        flex-direction: column;
-        padding: 2rem;
-        transition: right 0.3s ease-in-out;
-        border-left: 2px solid var(--cyber-cyan);
+      position: fixed;
+      top: 60px;
+      right: -100%;
+      width: 100%;
+      height: calc(100vh - 60px);
+      background: var(--cyber-bg);
+      flex-direction: column;
+      transition: 0.3s;
+      padding: 20px;
     }
+  
     .nav-links.active {
-        right: 0;
+      right: 0;
     }
-}
-
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-    .cyber-button {
-        width: 100%;
-        justify-content: center;
-    }
-    .contact-container {
-        padding: 1.5rem;
-    }
-    .projects-grid, .skills-grid {
-        grid-template-columns: 1fr;
-    }
-    .social-media-links {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-/* ======= FIX MOBILE MENU NAVIGATION ======= */
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-    .menu-toggle {
-        display: block;
-    }
-}
-
-/* ======= ENSURE LOADING SCREEN IS RESPONSIVE ======= */
-@media (max-width: 768px) {
-    .industrial-loader {
-        width: 90%;
-        height: auto;
-    }
-    .reactor-core {
-        width: 150px;
-        height: 150px;
-    }
-    .progress-bar {
-        height: 6px;
-    }
-}
-
-/* ======= ENSURE SLIDESHOWS WORK ON MOBILE ======= */
-@media (max-width: 600px) {
+  
+    /* Slideshow Fix */
     .slideshow-container {
-        width: 100%;
-        height: auto;
+      height: auto;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
     }
+  
     .slide {
-        position: relative;
-        opacity: 1;
-        transform: none;
+      position: absolute;
+      height: 100%;
     }
+  
+    /* About Section */
+    .about-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  
+    /* Contact Form */
+    .contact-container {
+      padding: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-content h1 {
+      font-size: 2rem;
+    }
+  
+    .hero-description {
+      font-size: 1rem;
+    }
+  
+    .cyber-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+  
+  .project-image {
+    height: 200px; /* Fixed height for mobile */
+  }
+
+/* Disable hover effects on mobile */
+@media (hover: none) {
+  .project-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  
+  .cyber-button:hover {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
 }
+
+@media (max-width: 768px) {
+    html {
+      font-size: 14px;
+    }
+    
+    .section-title {
+      font-size: 1.8rem;
+    }
+    
+    .project-info h3 {
+      font-size: 1.2rem;
+    }
+  }
+
+
+@media (max-width: 768px) {
+  .particle-canvas {
+    display: none;
+  }
+}
+
+input, textarea, button {
+    font-size: 16px !important; /* Prevent mobile zoom */
+    touch-action: manipulation;
+  }
+
+

@@ -607,21 +607,6 @@
             }
         });
 
-
-
-        // Prevent Mobile Zoom
-        document.addEventListener('touchmove', function(e) {
-            if (e.scale !== 1) e.preventDefault();
-        }, { passive: false });
-
-        // Viewport Height Fix
-        function setVH() {
-            let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        }
-        setVH();
-        window.addEventListener('resize', setVH);
-
         // ======== GPU ACCELERATION ========
         const gpuAccelerate = element => {
             element.style.transform = 'translateZ(0)';
@@ -629,11 +614,3 @@
         };
     })();
 
-/*************************************************************
-  3) Also replaced the repeated “mediaObserver” below with the
-     normal IntersectionObserver usage from above. Just ensure
-     there’s no duplication or conflict. If you had a second one
-     for some reason, remove or unify it.
-*************************************************************/
-
-// Removed the duplicate mediaObserver that was declared again.
