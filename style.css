@@ -2111,42 +2111,6 @@ input, textarea, button {
     }
 }
 
-/* Mobile Navigation */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--cyber-cyan);
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-/* Default Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 5%;
-    background: rgba(10, 10, 18, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--cyber-cyan);
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-}
-
-/* Mobile Menu Toggle */
-.menu-toggle {
-    display: none; /* Hidden by default */
-    background: none;
-    border: none;
-    color: var(--cyber-cyan);
-    font-size: 1.8rem;
-    cursor: pointer;
-    z-index: 1001;
-}
-
 /* Default Navbar */
 .navbar {
     display: flex;
@@ -2165,6 +2129,7 @@ input, textarea, button {
 .nav-links {
     display: flex;
     gap: 2rem;
+    list-style: none;
 }
 
 .nav-links a {
@@ -2231,4 +2196,5 @@ input, textarea, button {
         background: rgba(255, 255, 255, 0.1);
     }
 }
+
 
