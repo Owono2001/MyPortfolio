@@ -494,15 +494,6 @@
         container.innerHTML = html + `<span class="blink-cursor"></span>`;
     });
 
-    // Mobile Menu Toggle
-    const menuToggle = document.createElement('button');
-    menuToggle.className = 'menu-toggle';
-    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-    document.querySelector('.navbar').appendChild(menuToggle);
-
-    menuToggle.addEventListener('click', () => {
-        document.querySelector('.nav-links').classList.toggle('active');
-    });
 
     // Touch Device Improvements
     if (isTouchDevice) {
