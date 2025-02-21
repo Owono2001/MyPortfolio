@@ -1921,4 +1921,146 @@ input, textarea, button {
     touch-action: manipulation;
   }
 
+/* ======= Responsive Adjustments for Intro Screen & Loading Screen ======= */
 
+/* Adjust cyber intro content for mobile screens */
+@media (max-width: 768px) {
+    #cyberIntro .cyber-intro-content {
+        padding: 5vh 3vw; /* Reduce padding for small screens */
+        width: 90%;
+    }
+
+    #cyberIntro .cyber-title {
+        font-size: 3rem; /* Reduce title size */
+        margin-bottom: 1.5rem;
+    }
+
+    #cyberIntro .cyber-terminal {
+        max-width: 90%; /* Adjust width for smaller screens */
+        padding: 1rem;
+    }
+
+    #cyberIntro .timeline-event {
+        font-size: 1rem; /* Reduce font size */
+        top: -20px; /* Adjust position */
+    }
+
+    #cyberIntro .industrial-hud {
+        bottom: 1.5rem; /* Adjust spacing */
+        padding: 0 1rem;
+    }
+
+    #cyberIntro .coordinates {
+        font-size: 1rem;
+        padding-right: 1rem;
+    }
+
+    #cyberIntro .cyber-button-3d {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+}
+
+/* Even smaller screens (mobile phones) */
+@media (max-width: 480px) {
+    #cyberIntro .cyber-title {
+        font-size: 2.5rem;
+    }
+
+    #cyberIntro .cyber-terminal {
+        max-width: 95%;
+        padding: 0.8rem;
+    }
+
+    #cyberIntro .timeline-event {
+        font-size: 0.9rem;
+    }
+
+    #cyberIntro .cyber-button-3d {
+        width: 100%;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    #cyberIntro .industrial-hud {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #cyberIntro .capacity-bar {
+        width: 200px; /* Smaller width */
+        height: 8px;
+    }
+
+    #cyberIntro .coordinates {
+        font-size: 0.9rem;
+        padding-right: 0;
+    }
+}
+
+/* ======= Loading Screen Adjustments for Mobile ======= */
+@media (max-width: 768px) {
+    .cyber-loading {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .industrial-loader {
+        width: 80%;
+        height: auto;
+        max-width: 400px;
+    }
+
+    .reactor-core {
+        width: 150px;
+        height: 150px;
+    }
+
+    .progress-bar {
+        height: 6px;
+    }
+
+    .percentage {
+        font-size: 1rem;
+    }
+
+    .load-terminal {
+        max-width: 95%;
+        font-size: 0.9rem;
+    }
+}
+
+/* Small screen tweaks */
+@media (max-width: 480px) {
+    .industrial-loader {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    .reactor-core {
+        width: 120px;
+        height: 120px;
+    }
+
+    .percentage {
+        font-size: 0.9rem;
+    }
+
+    .load-terminal {
+        font-size: 0.85rem;
+    }
+
+    .progress-bar {
+        height: 5px;
+    }
+}
+
+/* Ensure loading particles don't overflow on small screens */
+@media (max-width: 768px) {
+    .loading-particle {
+        width: 3px;
+        height: 3px;
+    }
+}
