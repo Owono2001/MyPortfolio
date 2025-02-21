@@ -626,6 +626,7 @@
                 console.error("Menu toggle or nav-links not found.");
             }
         });
+
         // ======== GPU ACCELERATION ========
         const gpuAccelerate = element => {
             element.style.transform = 'translateZ(0)';
