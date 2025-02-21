@@ -1833,23 +1833,6 @@ body::after {
       margin-bottom: 1rem;
     }
   
-    /* Navigation Fix */
-    .nav-links {
-      position: fixed;
-      top: 60px;
-      right: -100%;
-      width: 100%;
-      height: calc(100vh - 60px);
-      background: var(--cyber-bg);
-      flex-direction: column;
-      transition: 0.3s;
-      padding: 20px;
-    }
-  
-    .nav-links.active {
-      right: 0;
-    }
-  
     /* Slideshow Fix */
     .slideshow-container {
       height: auto;
@@ -2154,28 +2137,23 @@ input, textarea, button {
     z-index: 1001;
 }
 
-/* Responsive Mobile Navigation */
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
     .nav-links {
-        display: none; /* Hide by default */
-        flex-direction: column;
-        position: absolute;
+        position: fixed;
         top: 60px;
-        right: 0;
+        right: -100%;
         width: 70%;
+        height: calc(100vh - 60px);
         background: var(--cyber-bg);
-        border-left: 2px solid var(--cyber-cyan);
+        flex-direction: column;
         text-align: center;
-        padding: 1rem 0;
-        transition: all 0.3s ease-in-out;
+        border-left: 2px solid var(--cyber-cyan);
+        transition: right 0.3s ease-in-out;
+        padding: 20px;
     }
 
     .nav-links.active {
-        display: flex; /* Show when active */
+        right: 0; /* Slide in effect */
     }
 
     .nav-links li {
