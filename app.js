@@ -505,8 +505,6 @@
             });
         });
     }
-
-
         document.addEventListener("DOMContentLoaded", () => {
             const cyberIntro = document.getElementById("cyberIntro");
             const enterWebsiteButton = document.querySelector(".cyber-button-3d");
@@ -520,6 +518,8 @@
                 });
             }
         });
+
+
 
 
         // In your existing app.js
@@ -595,6 +595,67 @@
                     const particleInterval = setInterval(createParticle, 50);
                     setTimeout(() => clearInterval(particleInterval), 4000);
                 });
+            }
+        });
+
+        
+        // Function to update real-time date and time
+        function updateCyberDateTime() {
+            const options = {
+                timeZone: 'Asia/Kuala_Lumpur',
+                hour12: false,
+                weekday: 'short',
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            };
+
+            const dateFormatter = new Intl.DateTimeFormat('en-MY', {
+                ...options,
+                hour: undefined,
+                minute: undefined,
+                second: undefined
+            });
+
+            const timeFormatter = new Intl.DateTimeFormat('en-MY', {
+                timeZone: 'Asia/Kuala_Lumpur',
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+
+            function update() {
+                const now = new Date();
+                
+                // Format Date
+                const dateParts = dateFormatter.formatToParts(now);
+                const day = dateParts.find(p => p.type === 'day').value;
+                const month = dateParts.find(p => p.type === 'month').value;
+                const year = dateParts.find(p => p.type === 'year').value;
+                const weekday = dateParts.find(p => p.type === 'weekday').value;
+                
+                // Format Time with Blinking Colon
+                const time = timeFormatter.format(now).replace(/:/g, '<span class="blink">:</span>');
+                
+                // Update HTML
+                document.querySelector('.real-time-date').innerHTML = 
+                    `${weekday.toUpperCase()} ${day} ${month.toUpperCase()} ${year}`;
+                document.querySelector('.real-time-clock').innerHTML = time;
+            }
+
+            // Run immediately and update every second
+            update();
+            setInterval(update, 1000);
+        }
+
+        // Initialize function when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            if(document.querySelector('#cyberIntro')) {
+                updateCyberDateTime();
             }
         });
 

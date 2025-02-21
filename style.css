@@ -2194,3 +2194,85 @@ input, textarea, button {
     }
 }
 
+
+
+/* 🌐 Cyber Intro - Real-Time Date and Time */
+.cyber-time-container {
+    position: absolute;
+    top: 2rem; /* Adjust this to position it properly inside the intro */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Oxanium', monospace;
+    text-align: center;
+}
+
+.real-time-date {
+    color: var(--cyber-cyan);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+}
+
+.real-time-clock {
+    color: var(--cyber-pink);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    position: relative;
+}
+
+.real-time-clock::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    background: var(--cyber-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--cyber-cyan);
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--cyber-cyan);
+    text-transform: uppercase;
+}
+
+.location i {
+    color: var(--cyber-pink);
+    animation: satellite-pulse 2s infinite;
+}
+
+@keyframes satellite-pulse {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-3px) rotate(15deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .cyber-time-container {
+        top: 1rem; /* Moves it slightly lower on smaller screens */
+        font-size: 0.9rem;
+    }
+
+    .real-time-date {
+        font-size: 0.9rem; /* Reduces font size on mobile */
+    }
+
+    .real-time-clock {
+        font-size: 1.4rem; /* Scales down clock size */
+    }
+
+    .location {
+        font-size: 0.8rem; /* Keeps city name readable */
+    }
+}
