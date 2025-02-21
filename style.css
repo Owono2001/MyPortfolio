@@ -729,12 +729,28 @@ body {
   }
   
   .hero-img {
-    max-width: 100px;       /* or 300px, or 50%—up to you */
-    width: 50%;            /* fallback to ensure responsive shrink */
-    height: auto;           /* keeps aspect ratio */
-    border-radius: 8px;     /* optional rounding */
-    display: inline-block;  /* needed for 'text-align: center' to center it */
+    max-width: 40%;  /* Reduce image size to 40% of container width */
+    height: auto;    /* Maintain aspect ratio */
+    opacity: 0.7;    /* Make it semi-transparent */
+    display: block;  /* Ensures proper centering */
+    margin: 0 auto;  /* Centers image horizontally */
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
+
+  /* Reduce size further for mobile screens */
+@media (max-width: 768px) {
+    .hero-img {
+        max-width: 50%;  /* Slightly larger on mobile for better visibility */
+        opacity: 0.6;     /* Adjust transparency */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-img {
+        max-width: 60%;
+        opacity: 0.5;
+    }
+}
 
   
 @keyframes icon-glitch {
@@ -2128,3 +2144,5 @@ input, textarea, button {
         right: 0;
     }
 }
+
+
