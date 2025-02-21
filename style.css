@@ -177,6 +177,7 @@ body {
     animation: text-appear 1s 0.6s ease-out forwards;
 }
 
+
 .cyber-button {
     padding: 1.2rem 2.5rem;
     border: 2px solid var(--cyber-cyan);
@@ -1923,83 +1924,116 @@ input, textarea, button {
 
 /* ======= Responsive Adjustments for Intro Screen & Loading Screen ======= */
 
-/* Adjust cyber intro content for mobile screens */
+/* ======= GLOBAL FIXES FOR MOBILE ======= */
 @media (max-width: 768px) {
-    #cyberIntro .cyber-intro-content {
-        padding: 5vh 3vw; /* Reduce padding for small screens */
+    html {
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .project-info h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* ======= HERO SECTION FIX ======= */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 70vh; /* Reduce height on mobile */
+        padding: 2rem 5%;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-image-container {
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .hero-img {
+        width: 80%;  /* Scale properly */
+        max-width: 300px; /* Limit size */
+        height: auto;
+        border-radius: 5px;
+    }
+}
+
+/* Smaller screens */
+@media (max-width: 480px) {
+    .hero {
+        min-height: 60vh;
+        padding: 1.5rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+    }
+
+    .hero-img {
         width: 90%;
+        max-width: 250px;
+    }
+}
+
+/* ======= CYBER INTRO SCREEN FIX ======= */
+@media (max-width: 768px) {
+    #cyberIntro {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
 
     #cyberIntro .cyber-title {
-        font-size: 3rem; /* Reduce title size */
-        margin-bottom: 1.5rem;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    #cyberIntro .cyber-intro-content {
+        padding: 5vh 3vw;
+        width: 90%;
     }
 
     #cyberIntro .cyber-terminal {
-        max-width: 90%; /* Adjust width for smaller screens */
+        max-width: 90%;
         padding: 1rem;
-    }
-
-    #cyberIntro .timeline-event {
-        font-size: 1rem; /* Reduce font size */
-        top: -20px; /* Adjust position */
-    }
-
-    #cyberIntro .industrial-hud {
-        bottom: 1.5rem; /* Adjust spacing */
-        padding: 0 1rem;
-    }
-
-    #cyberIntro .coordinates {
-        font-size: 1rem;
-        padding-right: 1rem;
     }
 
     #cyberIntro .cyber-button-3d {
         padding: 1rem 2rem;
         font-size: 1rem;
+        width: 100%;
     }
 }
 
-/* Even smaller screens (mobile phones) */
+/* Smaller phones */
 @media (max-width: 480px) {
     #cyberIntro .cyber-title {
         font-size: 2.5rem;
     }
 
-    #cyberIntro .cyber-terminal {
-        max-width: 95%;
-        padding: 0.8rem;
-    }
-
-    #cyberIntro .timeline-event {
-        font-size: 0.9rem;
-    }
-
     #cyberIntro .cyber-button-3d {
-        width: 100%;
-        font-size: 1rem;
-        text-align: center;
-    }
-
-    #cyberIntro .industrial-hud {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    #cyberIntro .capacity-bar {
-        width: 200px; /* Smaller width */
-        height: 8px;
-    }
-
-    #cyberIntro .coordinates {
         font-size: 0.9rem;
-        padding-right: 0;
+        padding: 0.8rem;
     }
 }
 
-/* ======= Loading Screen Adjustments for Mobile ======= */
+/* ======= LOADING SCREEN FIX ======= */
 @media (max-width: 768px) {
     .cyber-loading {
         width: 100vw;
@@ -2046,10 +2080,6 @@ input, textarea, button {
 
     .percentage {
         font-size: 0.9rem;
-    }
-
-    .load-terminal {
-        font-size: 0.85rem;
     }
 
     .progress-bar {
