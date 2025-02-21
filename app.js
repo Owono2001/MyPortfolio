@@ -515,189 +515,119 @@
         });
     }
 
-    // ======== Audio Setup ========
 
-    // ======== Advanced Character Animation System ========
-// ======== Advanced Character Animation System ========
-    class CharacterAnimator {
-        constructor() {
-            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            this.bgMusicSource = null;
-            this.typeBuffer = null;
-            this.isAudioReady = false;
-            this.typingQueue = [];
-            this.currentAnimationFrame = null;
-            this.bgMusicGain = null;
-            this.init().catch(console.error);
-        }
-
-        async init() {
-            await this.loadAudioResources();
-            this.setupAudio();
-            this.addEventListeners();
-        }
-
-        async loadAudioResources() {
-            const [bgMusicRes, typeBeepRes] = await Promise.all([
-                fetch('assets/audio/relaxing-piano.mp3'),
-                fetch('assets/audio/type-beep.mp3')
-            ]);
-
-            const [bgMusicArrayBuffer, typeBeepArrayBuffer] = await Promise.all([
-                bgMusicRes.arrayBuffer(),
-                typeBeepRes.arrayBuffer()
-            ]);
-
-            this.bgMusicBuffer = await this.audioContext.decodeAudioData(bgMusicArrayBuffer);
-            this.typeBuffer = await this.audioContext.decodeAudioData(typeBeepArrayBuffer);
-            this.isAudioReady = true;
-        }
-
-        setupAudio() {
-            this.pannerNode = this.audioContext.createPanner();
-            this.pannerNode.panningModel = 'HRTF';
-
-            this.bgMusicGain = this.audioContext.createGain();
-            this.bgMusicGain.gain.value = 0; // Start at 0 volume (fade in later)
-            
-            this.pannerNode.connect(this.audioContext.destination);
-        }
-
-        addEventListeners() {
-            document.getElementById('startButton').addEventListener('click', async () => {
-                await this.handleFirstInteraction();
-                await this.typeIntroText('character-text', introText, 12, () => {
-                    this.fadeInBackgroundMusic();
-                    this.transitionToMainPage();
+        document.addEventListener("DOMContentLoaded", () => {
+            const cyberIntro = document.getElementById("cyberIntro");
+            const enterWebsiteButton = document.querySelector(".cyber-button-3d");
+        
+            if (enterWebsiteButton) {
+                enterWebsiteButton.addEventListener("click", () => {
+                    cyberIntro.classList.add("hidden-intro"); // Fade out
+                    setTimeout(() => {
+                        cyberIntro.style.display = "none"; // Hide intro
+                    }, 1000);
                 });
-            });
-        }
-
-        async handleFirstInteraction() {
-            if (!this.isAudioReady) return;
-
-            try {
-                await this.audioContext.resume();
-                this.startBackgroundMusic();
-                document.getElementById('startButton').style.display = 'none';
-            } catch (err) {
-                console.error('Audio playback failed:', err);
             }
-        }
+        });
 
-        startBackgroundMusic() {
-            this.bgMusicSource = this.audioContext.createBufferSource();
-            this.bgMusicSource.buffer = this.bgMusicBuffer;
-            this.bgMusicSource.loop = true;
 
-            this.bgMusicSource.connect(this.bgMusicGain).connect(this.pannerNode);
-            this.bgMusicSource.start();
-        }
+        // In your existing app.js
+        document.addEventListener("DOMContentLoaded", () => {
+            const cyberIntro = document.getElementById("cyberIntro");
+            const enterWebsiteButton = document.querySelector(".cyber-button-3d");
+            const loadingScreen = document.getElementById("cyberLoad");
+            const loadSound = document.getElementById("loadSound");
+            const progressFill = document.querySelector(".progress-fill");
+            const percentageText = document.querySelector(".percentage");
+            const terminalLines = document.querySelectorAll(".terminal-output .line");
 
-        fadeInBackgroundMusic() {
-            if (!this.bgMusicGain) return;
-            this.bgMusicGain.gain.linearRampToValueAtTime(0.2, this.audioContext.currentTime + 2);
-        }
+            if (enterWebsiteButton) {
+                enterWebsiteButton.addEventListener("click", () => {
+                    // Start loading sequence
+                    cyberIntro.classList.add("hidden-intro");
+                    loadingScreen.style.display = "block";
+                    
+                    // Play industrial sound
+                    loadSound.play();
 
-        playTypeSound() {
-            if (!this.isAudioReady) return;
+                    // GSAP Loading Animation
+                    const loadingTL = gsap.timeline();
+                    
+                    // Animate progress bar
+                    loadingTL.to(progressFill, {
+                        width: "100%",
+                        duration: 4,
+                        ease: "power2.inOut",
+                        onUpdate: () => {
+                            const progress = Math.round(progressFill.clientWidth / progressFill.parentElement.clientWidth * 100);
+                            percentageText.textContent = `${progress}%`;
+                        }
+                    });
 
-            const source = this.audioContext.createBufferSource();
-            source.buffer = this.typeBuffer;
+                    // Animate terminal lines
+                    terminalLines.forEach((line, index) => {
+                        loadingTL.to(line, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.3,
+                            delay: index * 0.5
+                        }, "-=3");
+                    });
 
-            const gainNode = this.audioContext.createGain();
-            gainNode.gain.value = 0.1; // Lower beep volume.
+                    // Completion animation
+                    loadingTL.to(".industrial-loader", {
+                        opacity: 0,
+                        y: -50,
+                        duration: 1,
+                        ease: "power4.out"
+                    }).then(() => {
+                        loadingScreen.style.display = "none";
+                        // Start your main page animations here
+                    });
 
-            source.connect(gainNode).connect(this.pannerNode);
-            source.start();
-        }
+                    // Add particle effects
+                    const createParticle = () => {
+                        const particle = document.createElement("div");
+                        particle.className = "loading-particle";
+                        loadingScreen.appendChild(particle);
 
-        async typeIntroText(targetId, text, speed = 12, callback) {
-            const element = document.getElementById(targetId);
-            element.innerHTML = '';
+                        gsap.to(particle, {
+                            x: gsap.utils.random(-100, 100),
+                            y: gsap.utils.random(-100, 100),
+                            opacity: 0,
+                            scale: 2,
+                            duration: 1,
+                            onComplete: () => particle.remove()
+                        });
+                    };
 
-            for (let i = 0; i < text.length; i++) {
-                element.innerHTML += text[i];
-
-                if (text[i].trim()) {
-                    this.playTypeSound();
-                }
-
-                await new Promise(res => setTimeout(res, speed));
+                    const particleInterval = setInterval(createParticle, 50);
+                    setTimeout(() => clearInterval(particleInterval), 4000);
+                });
             }
-
-            if (typeof callback === 'function') callback();
-        }
-
-        transitionToMainPage() {
-            setTimeout(() => {
-                const introScreen = document.getElementById('intro-screen');
-                introScreen.style.opacity = '0';
-                setTimeout(() => {
-                    introScreen.style.display = 'none';
-                }, 1000);
-            }, 500);
-        }
-    }
-
-    // ======== Initialize System ========
-    const animator = new CharacterAnimator();
-
-    // ======== Intro Text Content ========
-    const introText = "Full Name: Pedro Fabian Owono Ondo Mangue\n"
-        + "ID: TP063251\n"
-        + "University Name: Asia Pacific University of Technology and Innovation\n"
-        + "My Nationality: Equatorial Guinean\n"
-        + "My Current Goal: Complete my Final Year Project\n"
-        + "Final Year Project Topic: Speech Therapy Assistance Mobile Application";
-
-    // ======== DOM Interaction ========    
-  // Wait for the DOM to fully load.
-    document.addEventListener('DOMContentLoaded', () => {
-    const enterSiteBtn = document.getElementById('enterSiteBtn');
-    const introScreen = document.getElementById('intro-screen');
-
-    // When the user clicks the "Enter the Website" button:
-    enterSiteBtn.addEventListener('click', () => {
-        userHasInteracted = true;  // Now allow audio to play.
-        
-        // Start the typing effect.
-        typeIntroText(introText, "intro-typed-text", 40, () => {
-        // Once the typing is complete, start the relaxing piano background music.
-        bgMusic.play().catch(err => {
-            console.warn("Background music play prevented:", err);
         });
-        
-        // Fade out and hide the intro screen.
-        introScreen.style.transition = "opacity 0.5s ease";
-        introScreen.style.opacity = "0";
-        setTimeout(() => {
-            introScreen.style.display = "none";
-        }, 500);
-        });
-    });
-    });
 
 
-    // Prevent Mobile Zoom
-    document.addEventListener('touchmove', function(e) {
-        if (e.scale !== 1) e.preventDefault();
-    }, { passive: false });
 
-    // Viewport Height Fix
-    function setVH() {
-        let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
-    setVH();
-    window.addEventListener('resize', setVH);
+        // Prevent Mobile Zoom
+        document.addEventListener('touchmove', function(e) {
+            if (e.scale !== 1) e.preventDefault();
+        }, { passive: false });
 
-    // ======== GPU ACCELERATION ========
-    const gpuAccelerate = element => {
-        element.style.transform = 'translateZ(0)';
-        element.style.backfaceVisibility = 'hidden';
-    };
-})();
+        // Viewport Height Fix
+        function setVH() {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        setVH();
+        window.addEventListener('resize', setVH);
+
+        // ======== GPU ACCELERATION ========
+        const gpuAccelerate = element => {
+            element.style.transform = 'translateZ(0)';
+            element.style.backfaceVisibility = 'hidden';
+        };
+    })();
 
 /*************************************************************
   3) Also replaced the repeated “mediaObserver” below with the

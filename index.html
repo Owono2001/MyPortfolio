@@ -9,7 +9,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    
     <!-- Oxanium Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&display=swap" rel="stylesheet">
     <!-- External Libraries -->
@@ -30,14 +30,99 @@
 <body>
 
 
-    <!-- Intro Section -->
-    <div id="intro-screen" class="intro-screen">
-        <div class="intro-content">
-            <h2 id="character-text"></h2>
-            <button id="startButton" class="enter-site-btn">Enter the Website</button>
+   <!-- Add this right after the opening <body> tag -->
+    <!-- Cyber Intro Section -->
+    <div id="cyberIntro" class="cyber-intro">
+        <!-- Holographic Grid Background -->
+        <div class="grid-container">
+            <div class="cyber-grid"></div>
+            <div class="grid-overlay"></div>
+        </div>
+
+        <!-- 3D Engineering Elements -->
+        <div class="engineering-elements">
+            <div class="rotating-gear"></div>
+            <div class="circuit-board"></div>
+            <div class="particle-beam"></div>
+        </div>
+
+        <!-- Main Intro Content -->
+        <div class="cyber-intro-content">
+            <!-- Updated Title -->
+            <h1 class="cyber-title glitch-layers" data-text="WELCOME TO MY PORTFOLIO">
+                <span class="cyber-cyan">WELCOME</span>
+                <span class="cyber-pink">TO MY</span>
+                <span class="cyber-cyan">PORTFOLIO</span>
+            </h1>
+
+            <!-- CTA Section -->
+            <div class="cyber-cta">
+                <div class="cyber-terminal">
+                    <div class="terminal-header">
+                        <span class="blink">system@portfolio:~</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p class="typing-text">Initializing engineering portfolio...</p>
+                        <button id="enterWebsite" class="cyber-button-3d">
+                            <span class="button-hologram"></span>
+                            ACCESS FULL SYSTEMS
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Industrial HUD Elements -->
+        <div class="industrial-hud">
+            <div class="hud-element capacity-bar">
+                <div class="bar-fill"></div>
+                <span>SYSTEM CAPACITY</span>
+            </div>
+            <div class="hud-element coordinates">
+                <span>13°24'35"N 2°11'20"E</span>
+            </div>
         </div>
     </div>
-    
+
+
+    <!-- Loading Screen -->
+    <div id="cyberLoad" class="cyber-loading">
+        <div class="loading-overlay"></div>
+        
+        <div class="industrial-loader">
+            <!-- Rotating Core -->
+            <div class="reactor-core">
+                <div class="core-inner"></div>
+                <div class="plasma-stream"></div>
+                <div class="rotating-ring"></div>
+            </div>
+            
+            <!-- Progress Elements -->
+            <div class="load-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                    <div class="progress-glitch"></div>
+                </div>
+                <div class="progress-text">
+                    <span class="percentage">0%</span>
+                    <span class="system-text">INITIALIZING MAIN SYSTEMS</span>
+                </div>
+            </div>
+            
+            <!-- Terminal Output -->
+            <div class="load-terminal">
+                <div class="terminal-output">
+                    <div class="line">> BOOTING INDUSTRIAL OS</div>
+                    <div class="line">> ENGAGING CORE REACTORS</div>
+                    <div class="line">> CALIBRATING SENSORS</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Audio Element -->
+        <audio id="loadSound" src="assets/sounds/industrial_startup.mp3"></audio>
+    </div>
+
 <!-- Navigation -->
 <nav class="navbar">
     <div class="logo">PFO</div>
@@ -51,6 +136,7 @@
     </div>
   </nav>
   
+  
   <!-- Cinematic Intro Section (above the hero) -->
   <section id="cinematicIntro" class="intro-section section">
     <!-- Layer 1: Distant Background -->
@@ -60,6 +146,7 @@
       <h1 class="intro-title">Welcome to My Portfolio</h1>
     </div>
   </section>
+
   
   <!-- Hero Section (with single image or no image, up to you) -->
   <section id="home" class="hero">

@@ -1097,17 +1097,6 @@ img.loaded, video.loaded {
     text-shadow: 0 0 10px rgba(0,243,255,0.6);
   }
   
-  .intro-typed-text {
-    font-size: 1.8rem;
-    line-height: 1.5;
-    white-space: pre-line; /* allows newline characters to work */
-    margin-bottom: 2rem;
-    min-height: 150px; /* reserve some vertical space */
-    /* Gradient text effect */
-    background: linear-gradient(45deg, var(--cyber-cyan), var(--cyber-pink));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
   
   .enter-site-btn {
     padding: 1rem 2rem;
@@ -1125,6 +1114,26 @@ img.loaded, video.loaded {
     color: #fff;
     transform: scale(1.05);
   }
+
+
+/* ✅ Glitch Effect for Text */
+@keyframes glitch {
+    0% { transform: translate(0); opacity: 1; }
+    20% { transform: translate(-2px, 2px); opacity: 0.8; }
+    40% { transform: translate(2px, -2px); opacity: 1; }
+    60% { transform: translate(-2px, -2px); opacity: 0.9; }
+    80% { transform: translate(2px, 2px); opacity: 1; }
+    100% { transform: translate(0); opacity: 1; }
+}
+
+.glitch-effect {
+    animation: glitch 0.1s infinite;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.8), 
+                 0 0 20px rgba(255, 0, 255, 0.7);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -1288,66 +1297,7 @@ body::after {
     backdrop-filter: blur(10px);
   }
 
-/* ======= Intro Screen Styling ======= */
-.intro-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("assets/images/industrial-bg.jpg") no-repeat center center;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    transition: opacity 1s ease-in-out;
-}
 
-.intro-content {
-    text-align: center;
-    color: #00ff88;
-    font-family: 'Oxanium', sans-serif;
-    text-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
-    max-width: 800px;
-}
-
-/* ======= Typing Text Effects ======= */
-#character-text {
-    font-family: 'Courier New', monospace;
-    font-size: 1.5em;
-    font-weight: bold;
-    background: linear-gradient(90deg, #00ff88, #00a3ff);
-    -webkit-background-clip: text;
-    color: transparent;
-    display: inline-block;
-    text-align: left;
-    white-space: pre-wrap; /* Ensures proper formatting */
-}
-
-/* ======= Button Styling ======= */
-.enter-site-btn {
-    padding: 12px 24px;
-    font-size: 1.2rem;
-    background: #00ff88;
-    border: none;
-    border-radius: 8px;
-    color: #000;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 20px;
-}
-
-.enter-site-btn:hover {
-    background: #00a3ff;
-    color: #fff;
-    transform: scale(1.05);
-}
-
-/* ======= Smooth Page Transition ======= */
-body {
-    transition: opacity 1s ease-in-out;
-}
 
 
 @media (max-width: 768px) {
@@ -1381,5 +1331,583 @@ body {
     }
     .section {
         padding: rem 5%;
+    }
+}
+
+
+/* Cyber Intro - Organized Layout */
+#cyberIntro {
+    position: fixed; /* Keeps it full screen */
+    width: 100%;
+    height: 100vh;
+    background: var(--cyber-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Centers content */
+    transition: opacity 1s ease-in-out;
+    z-index: 9999; /* Ensures it stays above everything */
+}
+
+/* Ensure the grid stays in the background */
+#cyberIntro .grid-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+    z-index: 1;
+}
+
+#cyberIntro .cyber-grid {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background-image: 
+        linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridScroll 20s linear infinite;
+    transform: rotateX(60deg);
+}
+
+@keyframes gridScroll {
+    0% { transform: rotateX(60deg) translateY(0) translateZ(0); }
+    100% { transform: rotateX(60deg) translateY(-50px) translateZ(100px); }
+}
+
+/* 3D Engineering Elements */
+#cyberIntro .engineering-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+#cyberIntro .rotating-gear {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 250px;
+    height: 250px;
+    background: url('gear-mesh.svg') no-repeat center;
+    background-size: contain;
+    animation: gearSpin 15s linear infinite;
+    filter: drop-shadow(0 0 15px var(--cyber-cyan));
+}
+
+@keyframes gearSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Main Intro Content */
+#cyberIntro .cyber-intro-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 10vh 5vw;
+    width: 80%;
+}
+
+#cyberIntro .cyber-title {
+    font-size: 4.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    perspective: 1000px;
+    color: var(--cyber-cyan);
+    text-shadow: 0 0 10px var(--cyber-pink);
+}
+
+/* Timeline - Fixed Overlapping */
+#cyberIntro .engineering-timeline {
+    position: relative;
+    height: 4px;
+    background: var(--cyber-cyan);
+    margin: 3rem auto;
+    width: 80%;
+    z-index: 4;
+}
+
+#cyberIntro .timeline-track {
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#cyberIntro .timeline-event {
+    position: relative;
+    top: -30px; /* Adjusted to avoid overlap */
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--cyber-pink);
+    white-space: nowrap; /* Prevent text from wrapping weirdly */
+}
+
+#cyberIntro .event-pulse {
+    width: 15px;
+    height: 15px;
+    background: var(--cyber-pink);
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    animation: pulse 1.5s infinite;
+}
+
+/* Terminal */
+#cyberIntro .cyber-terminal {
+    background: rgba(10, 10, 18, 0.95);
+    border: 2px solid var(--cyber-cyan);
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    position: relative;
+    z-index: 5;
+}
+
+#cyberIntro .terminal-header {
+    border-bottom: 1px solid var(--cyber-cyan);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Access Button - Better Visibility */
+#cyberIntro .cyber-button-3d {
+    position: relative;
+    padding: 1.2rem 2.5rem;
+    background: var(--cyber-bg);
+    border: 2px solid var(--cyber-cyan);
+    color: var(--cyber-cyan);
+    font-family: 'Oxanium', sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+    font-size: 1.2rem;
+    box-shadow: 0 0 15px var(--cyber-cyan);
+}
+
+#cyberIntro .cyber-button-3d:hover {
+    background: var(--cyber-cyan);
+    color: var(--cyber-bg);
+    box-shadow: 0 0 30px var(--cyber-pink);
+}
+
+/* HUD - Fix System Capacity */
+#cyberIntro .industrial-hud {
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    z-index: 6;
+}
+
+/* Fix System Capacity Alignment */
+#cyberIntro .capacity-bar {
+    width: 250px;
+    height: 10px;
+    background: rgba(255,255,255,0.1);
+    position: relative;
+}
+
+#cyberIntro .bar-fill {
+    position: absolute;
+    height: 100%;
+    width: 75%;
+    background: linear-gradient(90deg, var(--cyber-cyan), var(--cyber-pink));
+    animation: capacity-glow 1.5s infinite alternate;
+}
+
+@keyframes capacity-glow {
+    from { box-shadow: 0 0 5px var(--cyber-cyan); }
+    to { box-shadow: 0 0 15px var(--cyber-pink); }
+}
+
+/* Fix Coordinate Placement */
+#cyberIntro .coordinates {
+    text-align: right;
+    font-size: 1.2rem;
+    color: var(--cyber-cyan);
+    font-weight: bold;
+    padding-right: 2rem;
+}
+
+.hidden-intro {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Fix System Capacity Alignment */
+#cyberIntro .industrial-hud {
+    position: absolute;
+    bottom: 3rem; /* Increase bottom spacing */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 3rem; /* Add padding for better spacing */
+    z-index: 6;
+    align-items: flex-end; /* Align elements properly */
+}
+
+/* Fix the placement of System Capacity */
+#cyberIntro .capacity-bar {
+    width: 280px; /* Slightly larger */
+    height: 12px;
+    background: rgba(255,255,255,0.1);
+    position: relative;
+    margin-bottom: 1rem; /* Add space so it doesn't overlap */
+}
+
+/* Bar fill glow effect */
+#cyberIntro .bar-fill {
+    position: absolute;
+    height: 100%;
+    width: 75%;
+    background: linear-gradient(90deg, var(--cyber-cyan), var(--cyber-pink));
+    animation: capacity-glow 1.5s infinite alternate;
+}
+
+/* Fix System Capacity Text */
+#cyberIntro .capacity-bar span {
+    position: absolute;
+    left: 0;
+    bottom: -40px; /* Push text below the bar */
+    font-size: 1.1rem;
+    color: var(--cyber-cyan);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Coordinate Placement (Move to bottom-right properly) */
+#cyberIntro .coordinates {
+    text-align: right;
+    font-size: 1.2rem;
+    color: var(--cyber-cyan);
+    font-weight: bold;
+    padding-right: 3rem;
+    margin-bottom: 1rem; /* Add spacing */
+}
+
+
+/* ======= INDUSTRIAL LOADING SCREEN ======= */
+.cyber-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0a12;
+    z-index: 9998;
+    display: none;
+    overflow: hidden;
+}
+
+/* ======= BACKGROUND EFFECT ======= */
+.loading-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 243, 255, 0.05) 0px,
+        rgba(0, 243, 255, 0.05) 1px,
+        transparent 1px,
+        transparent 20px
+    );
+    animation: scan 2s linear infinite;
+}
+
+/* ======= CENTERED LOADING CONTAINER ======= */
+.industrial-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 400px;
+}
+
+/* ======= REACTOR CORE ANIMATION ======= */
+.reactor-core {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.core-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, #00f3ff 0%, #0a0a12 70%);
+    filter: blur(10px);
+    animation: core-pulse 2s infinite;
+}
+
+.plasma-stream {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    background: conic-gradient(
+        from 0deg at 50% 50%,
+        #00f3ff 0%,
+        #ff00ff 30%,
+        #00f3ff 70%,
+        #ff00ff 100%
+    );
+    border-radius: 50%;
+    filter: blur(30px);
+    opacity: 0.3;
+    animation: plasma-spin 4s linear infinite;
+}
+
+.rotating-ring {
+    position: absolute;
+    width: 110%;
+    height: 110%;
+    border: 2px solid #00f3ff;
+    border-radius: 50%;
+    top: -5%;
+    left: -5%;
+    animation: ring-rotate 6s linear infinite;
+}
+
+/* ======= PROGRESS BAR ======= */
+.load-progress {
+    margin-top: 50px;
+}
+
+.progress-bar {
+    position: relative;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.progress-fill {
+    position: absolute;
+    height: 100%;
+    background: linear-gradient(90deg, #00f3ff, #ff00ff);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.progress-glitch {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 45%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 55%
+    );
+    animation: glitch-scan 0.5s infinite;
+}
+
+/* ======= PROGRESS TEXT ======= */
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-family: 'Oxanium', sans-serif;
+}
+
+.percentage {
+    color: #00f3ff;
+    font-weight: bold;
+}
+
+.system-text {
+    color: #ff00ff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ======= TERMINAL OUTPUT ======= */
+.load-terminal {
+    margin-top: 30px;
+    border: 1px solid #00f3ff;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    height: 120px;
+    overflow: hidden;
+}
+
+.terminal-output {
+    font-family: 'Courier New', monospace;
+    color: #00f3ff;
+}
+
+.terminal-output .line {
+    margin: 5px 0;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* ======= PARTICLE ANIMATION ======= */
+.loading-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #00f3ff;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: drop-shadow(0 0 5px #00f3ff);
+}
+
+/* ======= ANIMATIONS ======= */
+@keyframes core-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes plasma-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes ring-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes glitch-scan {
+    0% { background-position: -100% 0; }
+    100% { background-position: 200% 0; }
+}
+
+
+/* ======= MOBILE RESPONSIVENESS FIXES ======= */
+@media (max-width: 1024px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+    .hero-description {
+        font-size: 1.2rem;
+    }
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    .about-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --section-padding: 5rem 3%;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .hero-description {
+        font-size: 1rem;
+    }
+    .project-card {
+        pointer-events: auto !important;
+    }
+    .skills-grid, .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    .custom-cursor {
+        display: none !important;
+    }
+    .menu-toggle {
+        display: block;
+        font-size: 2rem;
+        cursor: pointer;
+        padding: 1rem;
+        background: none;
+        border: none;
+        color: var(--cyber-cyan);
+    }
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 75%;
+        background: var(--cyber-bg);
+        flex-direction: column;
+        padding: 2rem;
+        transition: right 0.3s ease-in-out;
+        border-left: 2px solid var(--cyber-cyan);
+    }
+    .nav-links.active {
+        right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .cyber-button {
+        width: 100%;
+        justify-content: center;
+    }
+    .contact-container {
+        padding: 1.5rem;
+    }
+    .projects-grid, .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    .social-media-links {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* ======= FIX MOBILE MENU NAVIGATION ======= */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    .menu-toggle {
+        display: block;
+    }
+}
+
+/* ======= ENSURE LOADING SCREEN IS RESPONSIVE ======= */
+@media (max-width: 768px) {
+    .industrial-loader {
+        width: 90%;
+        height: auto;
+    }
+    .reactor-core {
+        width: 150px;
+        height: 150px;
+    }
+    .progress-bar {
+        height: 6px;
+    }
+}
+
+/* ======= ENSURE SLIDESHOWS WORK ON MOBILE ======= */
+@media (max-width: 600px) {
+    .slideshow-container {
+        width: 100%;
+        height: auto;
+    }
+    .slide {
+        position: relative;
+        opacity: 1;
+        transform: none;
     }
 }
