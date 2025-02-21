@@ -2094,3 +2094,37 @@ input, textarea, button {
         height: 3px;
     }
 }
+
+/* Mobile Navigation */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--cyber-cyan);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        background: var(--cyber-bg);
+        flex-direction: column;
+        padding: 2rem;
+        transition: right 0.3s ease;
+        border-left: 2px solid var(--cyber-cyan);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+}

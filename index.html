@@ -135,6 +135,7 @@
       <a href="#contact">Contact</a>
     </div>
   </nav>
+
   
   
   <!-- Cinematic Intro Section (above the hero) -->
@@ -159,10 +160,8 @@
         Bridging software solutions through innovative engineering 
         and computational thinking.<br>
       </p>
-      <!-- (Optional) Single hero image here -->
-      <!-- <div class="hero-image-container">
-        <img src="assets/images/myHeroImage.jpg" alt="Profile" class="hero-img">
-      </div> -->
+      
+
   
       <div class="hero-links">
         <a href="#projects" class="cyber-button">
@@ -177,6 +176,17 @@
   
     </div>
   </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    });
+</script>
 
     
     <script>
