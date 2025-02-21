@@ -2108,34 +2108,8 @@ input, textarea, button {
     z-index: 1000;
 }
 
-/* Desktop Navigation */
-.nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-}
 
-.nav-links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
 
-.nav-links a:hover {
-    color: var(--cyber-cyan);
-}
-
-/* Mobile Navigation */
-.menu-toggle {
-    display: none; /* Hide by default */
-    background: none;
-    border: none;
-    color: var(--cyber-cyan);
-    font-size: 1.8rem;
-    cursor: pointer;
-    z-index: 1001;
-}
 
 @media (max-width: 768px) {
     .menu-toggle {
