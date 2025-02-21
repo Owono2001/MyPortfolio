@@ -2111,9 +2111,39 @@ input, textarea, button {
     }
 }
 
+/* Default Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: rgba(10, 10, 18, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--cyber-cyan);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    color: var(--cyber-cyan);
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Mobile Navigation */
 @media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Show menu toggle button */
+    }
+
     .nav-links {
-        display: none; /* Hide by default */
+        display: none; /* Hidden by default */
         flex-direction: column;
         position: absolute;
         top: 60px;
@@ -2130,16 +2160,17 @@ input, textarea, button {
         display: flex; /* Show when active */
     }
 
-    .menu-toggle {
-        display: block; /* Ensure button is visible */
-        position: absolute;
-        top: 15px;
-        right: 20px;
-        font-size: 1.5rem;
-        background: transparent;
-        border: none;
-        color: var(--cyber-cyan);
-        cursor: pointer;
-        z-index: 1000;
+    .nav-links a {
+        display: block;
+        padding: 1rem;
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: background 0.3s;
+    }
+
+    .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.1);
     }
 }

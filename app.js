@@ -607,15 +607,25 @@
             }
         });
 
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", function() {
             const menuToggle = document.querySelector(".menu-toggle");
             const navLinks = document.querySelector(".nav-links");
-    
-            menuToggle.addEventListener("click", () => {
-                navLinks.classList.toggle("active");
-            });
+        
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener("click", function() {
+                    navLinks.classList.toggle("active");
+        
+                    // Ensure it works across all mobile screens
+                    if (navLinks.classList.contains("active")) {
+                        navLinks.style.display = "flex"; // Show menu
+                    } else {
+                        navLinks.style.display = "none"; // Hide menu
+                    }
+                });
+            } else {
+                console.error("Menu toggle or nav-links not found.");
+            }
         });
-
         // ======== GPU ACCELERATION ========
         const gpuAccelerate = element => {
             element.style.transform = 'translateZ(0)';
