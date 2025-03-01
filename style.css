@@ -2276,3 +2276,70 @@ input, textarea, button {
         font-size: 0.8rem; /* Keeps city name readable */
     }
 }
+
+
+
+
+
+
+/* Project Overview System */
+.project-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 18, 0.95);
+    display: none;
+    z-index: 1000;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.project-detail {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: rgba(16, 16, 32, 0.9);
+    padding: 2rem;
+    border: 2px solid var(--cyber-cyan);
+    position: relative;
+}
+
+.close-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: var(--cyber-pink);
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.close-overlay:hover {
+    transform: rotate(90deg);
+}
+
+.expanded-links {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+
+
+
+
+/* GitHub Footer */
+.github-footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem;
+    border-top: 2px solid var(--cyber-cyan);
+}
+
+.github-footer p {
+    color: var(--cyber-pink);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}

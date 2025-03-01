@@ -598,6 +598,42 @@
             }
         });
 
+        // Project Overview System
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if(!e.target.closest('.project-link')) { // Don't trigger on link clicks
+                    const title = card.querySelector('h3').textContent;
+                    const description = card.querySelector('p').textContent;
+                    const techStack = [...card.querySelectorAll('.tech-item')].map(t => t.textContent).join(', ');
+                    const githubLink = card.querySelector('.project-link').href;
+
+                    const overlay = document.createElement('div');
+                    overlay.className = 'project-overlay';
+                    overlay.innerHTML = `
+                        <div class="project-detail">
+                            <span class="close-overlay">&times;</span>
+                            <h3>${title}</h3>
+                            <div class="project-tech">${techStack}</div>
+                            <p>${description}</p>
+                            <div class="expanded-links">
+                                <a href="${githubLink}" target="_blank" class="cyber-button">
+                                    <i class="fab fa-github"></i>
+                                    View Full Repository
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(overlay);
+                    overlay.style.display = 'block';
+
+                    overlay.querySelector('.close-overlay').addEventListener('click', () => {
+                        overlay.remove();
+                    });
+                }
+            });
+        });
+
         
         // Function to update real-time date and time
         function updateCyberDateTime() {
