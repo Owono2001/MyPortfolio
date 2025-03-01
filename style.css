@@ -2995,3 +2995,148 @@ input, textarea, button {
         font-size: 0.95rem;
     }
 }
+
+
+
+/* ===== MOBILE OPTIMIZATION ===== */
+@media (max-width: 768px) {
+    .experience-section {
+        padding: 4rem 5%;
+    }
+
+    .cyber-timeline {
+        padding-left: 20px;
+    }
+
+    .timeline-line {
+        left: 25px;
+        width: 2px;
+    }
+
+    .experience-card {
+        width: 100%;
+        left: 0;
+        margin: 3rem 0;
+        padding: 1.5rem;
+    }
+
+    .timeline-marker {
+        left: -45px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .timeline-marker i {
+        font-size: 1.2rem;
+    }
+
+    .experience-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .holographic-logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .cyber-role {
+        font-size: 1.4rem;
+    }
+
+    .org-details {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .detail-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .tech-tags {
+        gap: 0.5rem;
+    }
+
+    .tech-tag {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .achievement-item {
+        margin: 1rem 0;
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .achievement-icon {
+        font-size: 0.9rem;
+    }
+
+    .detail-item {
+        padding-left: 1.5rem;
+    }
+
+    .detail-item::before {
+        left: -5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cyber-timeline {
+        padding-left: 15px;
+    }
+
+    .timeline-line {
+        left: 20px;
+    }
+
+    .timeline-marker {
+        left: -40px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .cyber-role {
+        font-size: 1.2rem;
+    }
+
+    .detail-value {
+        font-size: 0.9rem;
+    }
+
+    .tech-tag {
+        font-size: 0.75rem;
+    }
+
+    .achievement-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .detail-label {
+        font-size: 0.8rem;
+    }
+
+    .org-details {
+        font-size: 0.9rem;
+    }
+}
+
+/* Touch Device Adjustments */
+@media (hover: none) {
+    .achievement-item:hover {
+        transform: none;
+    }
+    
+    .tech-tag {
+        background: rgba(0,243,255,0.05);
+    }
+    
+    .experience-card {
+        transform: none !important;
+    }
+}
