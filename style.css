@@ -597,6 +597,274 @@ body {
     box-shadow: 0 0 30px rgba(0, 243, 255, 0.1);
 }
 
+
+
+
+/* ===== CYBER CONTACT SECTION ===== */
+.contact-section {
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 5%;
+}
+
+.cyber-grid-overlay {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background-image: 
+        linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridScroll 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes gridScroll {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-50px, -50px); }
+}
+
+.contact-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem;
+    background: rgba(10, 10, 18, 0.95);
+    border: 2px solid var(--cyber-cyan);
+    box-shadow: 0 0 40px rgba(0, 243, 255, 0.2);
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.holographic-icon {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+}
+
+.holographic-icon i {
+    font-size: 2.5rem;
+    color: var(--cyber-cyan);
+    position: relative;
+    z-index: 2;
+}
+
+.hologram-effect {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, 
+        rgba(0,243,255,0.3) 0%, 
+        transparent 70%);
+    animation: hologramPulse 3s infinite;
+}
+
+@keyframes hologramPulse {
+    0% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.2; transform: scale(1.2); }
+    100% { opacity: 0.5; transform: scale(1); }
+}
+
+/* Input Fields */
+.input-container {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.input-container label {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.4);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
+}
+
+.input-container input:focus ~ label,
+.input-container textarea:focus ~ label,
+.input-container input:valid ~ label,
+.input-container textarea:valid ~ label {
+    top: -10px;
+    left: 10px;
+    font-size: 0.8rem;
+    color: var(--cyber-cyan);
+}
+
+.input-container input,
+.input-container textarea {
+    width: 100%;
+    padding: 1.5rem;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(0,243,255,0.3);
+    color: var(--cyber-cyan);
+    transition: all 0.3s ease;
+}
+
+.input-container input:focus,
+.input-container textarea:focus {
+    border-color: var(--cyber-cyan);
+    box-shadow: 0 0 20px rgba(0,243,255,0.2);
+}
+
+.input-glitch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 45%,
+        rgba(255,255,255,0.05) 50%,
+        transparent 55%
+    );
+    animation: glitchScan 2s infinite;
+    pointer-events: none;
+}
+
+.char-counter {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.8rem;
+}
+
+/* Cyber Button */
+.cyber-button {
+    position: relative;
+    width: 100%;
+    padding: 1.5rem;
+    background: transparent;
+    border: 2px solid var(--cyber-cyan);
+    color: var(--cyber-cyan);
+    font-family: 'Oxanium', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn-overlay {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0,243,255,0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.cyber-button:hover .btn-overlay {
+    left: 100%;
+}
+
+.btn-lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 5px,
+        rgba(0,243,255,0.1) 5px,
+        rgba(0,243,255,0.1) 10px
+    );
+}
+
+/* Social Channels */
+.alternative-comms {
+    margin-top: 3rem;
+    border-top: 2px solid var(--cyber-cyan);
+    padding-top: 2rem;
+}
+
+.comms-channels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.comms-link {
+    position: relative;
+    padding: 1.5rem;
+    border: 1px solid rgba(0,243,255,0.3);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.comms-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0,243,255,0.2);
+}
+
+.comms-link i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.comms-hover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, 
+        rgba(0,243,255,0.1) 0%, 
+        transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.comms-link:hover .comms-hover {
+    opacity: 1;
+}
+
+/* Success Message */
+.transmission-success {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(10, 10, 18, 0.95);
+    padding: 2rem 4rem;
+    border: 2px solid var(--cyber-cyan);
+    box-shadow: 0 0 30px rgba(0,243,255,0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.transmission-success.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        padding: 2rem;
+    }
+    
+    .comms-channels {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+
 .form-row {
     margin-bottom: 1.5rem;
 }
@@ -2347,6 +2615,7 @@ input, textarea, button {
 
 
 
+
 /* Add this CSS to your style.css */
 /* ===== CYBER ABOUT SECTION ===== */
 .about-section {
@@ -2501,5 +2770,64 @@ input, textarea, button {
     
     .cyber-grid {
         gap: 1rem;
+    }
+}
+
+/* Enhanced Education Styling */
+.value br {
+    display: block;
+    content: "";
+    margin-bottom: 0.5rem;
+}
+
+/* Specialty Highlight Colors */
+.cyber-cyan {
+    color: var(--cyber-cyan);
+    font-weight: 600;
+}
+
+.cyber-pink {
+    color: var(--cyber-pink);
+    font-weight: 600;
+}
+
+/* Improved Mission Statement */
+.mission-statement {
+    position: relative;
+    padding-left: 2rem;
+    border-left: 3px solid var(--cyber-cyan);
+    margin: 2.5rem 0;
+}
+
+.mission-statement .cyber-icon {
+    position: absolute;
+    left: -1.8rem;
+    top: 0.2rem;
+    font-size: 1.5rem;
+}
+
+/* Enhanced Mobile Layout */
+@media (max-width: 768px) {
+    .mission-statement {
+        padding-left: 1.5rem;
+        margin: 2rem 0;
+    }
+    
+    .value br {
+        margin-bottom: 0.3rem;
+    }
+    
+    .cyber-line .value {
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 480px) {
+    .cyber-line .value {
+        font-size: 0.9rem;
+    }
+    
+    .mission-statement {
+        font-size: 0.95rem;
     }
 }

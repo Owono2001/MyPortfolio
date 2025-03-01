@@ -535,76 +535,146 @@
     </section>
   </section>
 
-    <!-- Update your About Me section HTML -->
-    <section id="about" class="about-section">
-        <h2 class="section-title" data-cursor>About The Engineer</h2>
-        <div class="about-content">
-            <img src="assets/images/profile2.jpg" alt="Pedro Fabian Owono" class="profile-pic">
-            <div class="about-container">
-                <div class="cyber-heading">
-                    <h2 class="cyber-glow">Pedro Fabian <span class="cyber-underscore">Owono</span></h2>
-                    <div class="cyber-underline"></div>
-                </div>
+  <section id="about" class="about-section">
+    <h2 class="section-title" data-cursor>About The Engineer</h2>
+    <div class="about-content">
+        <img src="assets/images/profile2.jpg" alt="Pedro Fabian Owono" class="profile-pic">
+        <div class="about-container">
+            <div class="cyber-heading">
+                <h2 class="cyber-glow">Pedro Fabian <span class="cyber-underscore">Owono</span></h2>
+                <div class="cyber-underline"></div>
+            </div>
+            
+            <div class="cyber-bio">
+                <p class="cyber-text animate-text">
+                    <span class="cyber-icon"><i class="fas fa-terminal"></i></span>
+                    <span class="highlight">>_ PROFILE STATUS: [ACTIVE]</span>
+                </p>
                 
-                <div class="cyber-bio">
-                    <p class="cyber-text animate-text">
-                        <span class="cyber-icon"><i class="fas fa-terminal"></i></span>
-                        <span class="highlight">>_ INITIALIZING PROFILE...</span>
-                    </p>
-                    
-                    <div class="cyber-grid">
-                        <div class="cyber-line">
-                            <span class="tag">$ education</span>
-                            <span class="value">BEng Computer Engineering @ Asia Pacific University</span>
-                        </div>
-                        
-                        <div class="cyber-line">
-                            <span class="tag">$ specialties</span>
-                            <span class="value">Autonomous Systems | Embedded Design | Full-Stack Development</span>
-                        </div>
-                        
-                        <div class="cyber-line">
-                            <span class="tag">$ passions</span>
-                            <span class="value">Robotic Kinematics</span>
-                            <span class="cyber-divider">//</span>
-                            <span class="value">Sound Engineering</span>
-                            <span class="cyber-divider">//</span>
-                            <span class="value">IoT Architecture</span>
-                        </div>
+                <div class="cyber-grid">
+                    <!-- Updated Education Section -->
+                    <div class="cyber-line">
+                        <span class="tag">$ education</span>
+                        <span class="value">
+                            BEng Computer Engineering (Hons)<br>
+                            Asia Pacific University of Technology & Innovation<br>
+                            MSc Computer Engineering<br>
+                            De Montfort University (DMU), UK
+                        </span>
                     </div>
-
-                    <p class="cyber-text mission-statement">
-                        <span class="cyber-icon"><i class="fas fa-code"></i></span>
-                        <span class="cyber-glow">Mission:</span> Developing intelligent systems that bridge 
-                        <span class="cyber-cyan">hardware</span> and 
-                        <span class="cyber-pink">software</span> through 
-                        <span class="highlight">innovative engineering solutions</span>.
-                    </p>
+                    
+                    <!-- Updated Specialties Section -->
+                    <div class="cyber-line">
+                        <span class="tag">$ specialties</span>
+                        <span class="value">
+                            <span class="cyber-cyan">Programming</span> | 
+                            <span class="cyber-pink">IoT Architecture</span> | 
+                            <span class="cyber-cyan">Software Development</span>
+                        </span>
+                    </div>
+                    
+                    <!-- Updated Passions Section -->
+                    <div class="cyber-line">
+                        <span class="tag">$ expertise</span>
+                        <span class="value">Embedded Systems</span>
+                        <span class="cyber-divider">//</span>
+                        <span class="value">System Integration</span>
+                        <span class="cyber-divider">//</span>
+                        <span class="value">Full-Stack Solutions</span>
+                    </div>
                 </div>
+
+                <!-- Updated Mission Statement -->
+                <p class="cyber-text mission-statement">
+                    <span class="cyber-icon"><i class="fas fa-rocket"></i></span>
+                    <span class="cyber-glow">Primary Objective:</span> Architecting 
+                    <span class="cyber-cyan">scalable systems</span> that synergize 
+                    <span class="highlight">cutting-edge software</span> with 
+                    <span class="cyber-pink">advanced hardware solutions</span>, 
+                    driving technological innovation through 
+                    <span class="highlight">full-stack engineering excellence</span>.
+                </p>
             </div>
         </div>
-    </section>
-
-<!-- Contact Session -->
-<section id="contact" class="contact-section">
-    <h2 class="section-title" data-cursor>Contact Me</h2>
-    <div class="contact-container">
-        <form action="https://formspree.io/f/xqaezjbb" method="POST">
-            <div class="form-row">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name" required>
-            </div>
-            <div class="form-row">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="_replyto" placeholder="Enter your email" required>
-            </div>
-            <div class="form-row">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
-            </div>
-            <button type="submit" class="btn">Send Message</button>
-        </form>
     </div>
+</section>
+
+<!-- Updated Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="cyber-grid-overlay"></div>
+    <h2 class="section-title" data-cursor>[CONNECT]</h2>
+    
+    <div class="contact-container">
+        <div class="contact-header">
+            <div class="holographic-icon">
+                <i class="fas fa-satellite-dish"></i>
+                <div class="hologram-effect"></div>
+            </div>
+            <p class="comms-status">Secure Channel: <span class="cyber-cyan">ENCRYPTED</span></p>
+        </div>
+
+        <form id="cyberForm" action="https://formspree.io/f/xqaezjbb" method="POST" class="cyber-form">
+            <div class="form-row">
+                <div class="input-container">
+                    <input type="text" id="name" name="name" required>
+                    <label for="name">> ENTER OPERATOR NAME</label>
+                    <div class="input-glitch"></div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="input-container">
+                    <input type="email" id="email" name="_replyto" required>
+                    <label for="email">> INPUT COMMS FREQUENCY</label>
+                    <div class="input-glitch"></div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="input-container">
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <label for="message">> TRANSMISSION CONTENT</label>
+                    <div class="input-glitch"></div>
+                    <div class="char-counter"><span>0</span>/500</div>
+                </div>
+            </div>
+
+            <button type="submit" class="cyber-button">
+                <span class="btn-content">INITIATE TRANSMISSION</span>
+                <div class="btn-overlay"></div>
+                <div class="btn-lines"></div>
+            </button>
+        </form>
+
+        <div class="alternative-comms">
+            <h3 class="comms-title">DIRECT FREQUENCIES</h3>
+            <div class="comms-channels">
+                <a href="mailto:owonoondomangue@gmail.com" class="comms-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>SECURE MAIL</span>
+                    <div class="comms-hover"></div>
+                </a>
+                <a href="https://www.linkedin.com/in/pedrofondomangue/" class="comms-link" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                    <span>PROFESSIONAL CHANNEL</span>
+                    <div class="comms-hover"></div>
+                </a>
+                <a href="https://github.com/Owono2001" class="comms-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span>CODE REPOSITORY</span>
+                    <div class="comms-hover"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="transmission-success">
+        <div class="success-content">
+            <i class="fas fa-check-circle"></i>
+            <p>TRANSMISSION SUCCESSFUL</p>
+        </div>
+    </div>
+</section>
 
     <section class="social-media-section">
         <h3 class="social-title">Connect with Me on Social Media</h3>
