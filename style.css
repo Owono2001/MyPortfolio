@@ -1015,7 +1015,7 @@ img.loaded, video.loaded {
     
     .profile-pic {
         max-width: 140px;
-        margin: 0 auto;
+        margin-bottom: 1.5rem; /* Add space below image */
     }
 }
 
