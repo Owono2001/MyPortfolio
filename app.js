@@ -117,6 +117,23 @@
         });
     }
 
+    // Add to touch device detection
+    if (isTouchDevice) {
+        // Add touch-specific classes
+        document.documentElement.classList.add('touch-device');
+        
+        // Better hover handling
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.classList.add('hover-effect');
+            });
+            
+            card.addEventListener('touchend', () => {
+                setTimeout(() => card.classList.remove('hover-effect'), 500);
+            });
+        });
+    }
+
     // ======== PROJECT CARD INTERACTIONS ========
     document.querySelectorAll('.project-card').forEach(card => {
         /********************************************************************
@@ -694,6 +711,9 @@
                 updateCyberDateTime();
             }
         });
+
+
+
 
         document.addEventListener("DOMContentLoaded", function () {
             const menuToggle = document.querySelector(".menu-toggle");
