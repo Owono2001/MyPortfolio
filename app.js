@@ -133,6 +133,8 @@
             });
         });
     }
+    
+
 
     // ======== PROJECT CARD INTERACTIONS ========
     document.querySelectorAll('.project-card').forEach(card => {
