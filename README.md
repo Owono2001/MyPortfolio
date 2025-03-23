@@ -1,5 +1,8 @@
 # MyPortfolio
-
+<div align="center">
+  <img src="https://komarev.com/ghpvc/?username=Owono2001&style=flat-square&color=7DF9FF" alt="Profile Views">
+  <p style="font-family: 'Space Mono', monospace; color: #7DF9FF; font-size: 1.2em;">Your visit sparks innovation! 🔥</p>
+</div>
 MyPortfolio Website
 
 
