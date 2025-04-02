@@ -1,75 +1,67 @@
-# MyPortfolio
-<div align="center">
-  <img src="https://komarev.com/ghpvc/?username=Owono2001&style=flat-square&color=7DF9FF" alt="Profile Views">
-  <p style="font-family: 'Space Mono', monospace; color: #7DF9FF; font-size: 1.2em;">Your visit sparks innovation! 🔥</p>
-</div>
-MyPortfolio Website
+# <img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width="30px"> My Personal Portfolio Website
 
+<p align="center">
+  <em>Showcasing innovation, engineering, and my personal academic journey.</em>
+  <br><br>
+  <img src="https://komarev.com/ghpvc/?username=Owono2001&style=flat-square&color=7DF9FF" alt="Profile Views"/>
+  <br>
+  <sub style="font-family: 'Space Mono', monospace; color: #7DF9FF;">Your visit sparks innovation! 🔥</sub>
+</p>
 
-Introduction
+---
 
+## 🚀 Introduction & Vision
 
-MyPortfolio is a custom-built website designed to showcase my work, achievements, and personal academical journey. Developed from scratch with creativity and technical expertise, this platform reflects my dedication to innovation, engineering, and technology-driven solutions.
+Welcome! This repository contains the source code for my **custom-built personal portfolio website**. Developed entirely from scratch, this platform is a reflection of my dedication to innovation and serves as a dynamic showcase of my work, skills, achievements, and journey in engineering and technology.
 
+The primary goal is to provide an **interactive and professional space** where visitors can explore:
 
-Purpose & Vision
+* My projects spanning **Robotics 🤖, Artificial Intelligence 🧠, and Software Development 💻**.
+* Detailed work descriptions highlighting **technical skills**, **problem-solving approaches**, and **creative solutions**.
+* A living portfolio serving as a professional reference for **career opportunities and collaborations ✨**.
 
+---
 
-The primary goal of this website is to provide an interactive and professional space where visitors can explore:
+## ✨ Key Features
 
-• My projects in robotics, AI, and software development.
+✔ **Modern & Custom Design:** A unique, user-friendly interface built for aesthetics and optimized performance.
+✔ **Dynamic Project Gallery:** Engaging visuals and descriptions showcasing key projects like autonomous robots and machine vision systems.
+✔ **Intuitive Navigation:** Effortless access to essential sections: `About Me`, `Projects`, `Media`, and `Contact`.
+✔ **Fully Responsive Layout:** A seamless and consistent experience across desktops, tablets, and mobile devices.
 
-• Detailed descriptions of my work, highlighting technical skills, problem-solving approaches, and innovative solutions.
+---
 
-• A portfolio that serves as a professional reference for career opportunities and collaborations.
+## 💻 Technology Stack
 
+This website leverages a clean and effective stack focused on core web technologies:
 
-Features
+* **`HTML5`**: Structuring the content semantically.
+* **`CSS3`**: Styling, layout, animations, and responsive design.
+* **`JavaScript`**: Enabling dynamic features and user interactivity.
+* **Custom Media Assets**: Unique, self-developed images and graphics tailored for project showcases.
 
-✔ Modern Design – A fully customized, user-friendly interface with optimized performance.
+---
 
-✔ Project Gallery – Images and descriptions showcasing my work, including autonomous robots and machine vision systems.
+## ⚖️ Legal Notice & License
 
-✔ Interactive Navigation – Easy access to sections such as About Me, Projects, Media, and Contact.
+> ### **🔒 Custom Proprietary License**
+>
+> The contents of this website—including all **code, designs, text, images, and assets**—are the exclusive intellectual property of the project owner, **[Owono2001](https://github.com/Owono2001)**.
+>
+> **Unauthorized use, duplication, modification, distribution, or reproduction in any form is strictly prohibited** without explicit written permission from the owner.
+>
+> #### **Key Restrictions:**
+> * This website **may NOT** be reused as a template or theme.
+> * Copying, repurposing, or redistributing any code, design elements, or media assets is **strictly forbidden**.
+> * Failure to comply may result in **legal action** under applicable international copyright and intellectual property laws.
 
-✔ Responsive Layout – Seamless experience across desktop, tablet, and mobile devices.
+---
 
+## 📧 Get In Touch
 
-Technology Stack
+I'm always open to discussing collaborations, interesting projects, or engaging in technical conversations. Feel free to connect:
 
+* **GitHub:** [![GitHub Badge](https://img.shields.io/badge/-Owono2001-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Owono2001)
+* **Email:** [![Email Badge](https://img.shields.io/badge/-owonoondomangue@gmail.com-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:owonoondomangue@gmail.com)
 
-This website was built using the following technologies:
-
-• HTML5 – For structuring the website content.
-
-• CSS3 – For styling, layout, and responsive design.
-
-• JavaScript – For dynamic features and interactivity.
-
-• Media Assets – Custom images developed specifically for project showcases.
-
-
-Legal Notice & License
-
-
-This project is protected under a Custom Proprietary License. The contents of this website—including all code, images, and assets—are the exclusive intellectual property of the project owner (Owono2001). Unauthorized use, duplication, modification, distribution, or reproduction in any form is strictly prohibited without explicit written permission from the owner.
-
-
-Key Restrictions
-
-
-• This website may not be reused as a template or for any commercial or non-commercial project.
-
-• Copying or redistributing the code, design, or media assets in any manner is prohibited.
-
-• Violators will be subject to legal action under international copyright and intellectual property laws.
-
-
-Contact
-
-
-For inquiries regarding collaborations, projects, or technical discussions, please reach out via:
-
-• GitHub Profile: Owono2001
-
-• Email: owonoondomangue@gmail.com
+---
