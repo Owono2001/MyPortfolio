@@ -22,6 +22,14 @@ The primary goal is to provide an **interactive and professional space** where v
 
 ---
 
+## 🎬 Portfolio Video Overview
+
+Click the thumbnail below to watch a quick video tour of my portfolio website:
+
+https://github.com/user-attachments/assets/71f442a0-72f7-4b7f-9262-e91e6b10826f
+
+---
+
 ## ✨ Key Features
 
 ✔ **Modern & Custom Design:** A unique, user-friendly interface built for aesthetics and optimized performance.
